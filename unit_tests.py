@@ -4,11 +4,11 @@ import unittest
 from test import test_support
 from keychain import PrivateKeychain, PublicKeychain
 from pybitcoin import BitcoinPrivateKey, BitcoinPublicKey
-from blockstack_profiles import sign_profile_tokens, validate_token_record, \
-    get_profile_from_tokens
+from blockstack_profiles import sign_profile_tokens, get_profile_from_tokens, \
+    create_zone_file
 
 
-class TokeningTest(unittest.TestCase):
+class TokeningTests(unittest.TestCase):
     def setUp(self):
         self.master_private_key = BitcoinPrivateKey()
 
@@ -37,9 +37,25 @@ class TokeningTest(unittest.TestCase):
         self.assertEqual(profile, reference_profile)
 
 
+class ZonefileTests(unittest.TestCase):
+    def setUp(self):
+        pass
+
+    def tearDown(self):
+        pass
+
+    def test_zone_file_creation(self):
+        origin = "naval.id"
+        token_file_url = "https://mq9.s3.amazonaws.com/naval.id/profile.json"
+        zone_file = create_zone_file(origin, token_file_url)
+        print json.dumps(zone_file, indent=2)
+        self.assertTrue(isinstance(zone_file, dict))
+
+
 def test_main():
     test_support.run_unittest(
-        TokeningTest,
+        TokeningTests,
+        ZonefileTests
     )
 
 
