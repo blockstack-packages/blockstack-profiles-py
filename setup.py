@@ -18,6 +18,9 @@ setup(
     packages=find_packages(),
     zip_safe=False,
     install_requires=[
+        'PyJWT==1.4.0',
+        'keychain==0.1.4',
+        'cryptography==1.2.3'
     ],
     classifiers=[
         'Intended Audience :: Developers',
