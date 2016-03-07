@@ -5,7 +5,7 @@ from test import test_support
 from keychain import PrivateKeychain, PublicKeychain
 from pybitcoin import BitcoinPrivateKey, BitcoinPublicKey
 from blockstack_profiles import sign_profile_tokens, get_profile_from_tokens, \
-    create_zone_file
+    create_zone_file, get_person_from_legacy_format 
 
 
 class TokeningTests(unittest.TestCase):
@@ -51,6 +51,50 @@ class ZonefileTests(unittest.TestCase):
         print json.dumps(zone_file, indent=2)
         self.assertTrue(isinstance(zone_file, dict))
 
+    def test_profile_format_migration(self):
+        legacy_profile = {
+            "data_record": {
+                "avatar": {
+                    "url": "https://s3.amazonaws.com/kd4/judecn"
+                },
+                "bio": "PhD student",
+                "bitcoin": {
+                    "address": "17zf596xPvV8Z8ThbWHZHYQZEURSwebsKE"
+                },
+                "cover": {
+                    "url": "https://s3.amazonaws.com/97p/gQZ.jpg"
+                },
+                "facebook": {
+                    "proof": {
+                        "url": "https://facebook.com/sunspider/posts/674912239245011"
+                    },
+                    "username": "sunspider"
+                },
+                "github": {
+                    "proof": {
+                        "url": "https://gist.github.com/jcnelson/70c02f80f8d4b0b8fc15"
+                    },
+                    "username": "jcnelson"
+                },
+                "location": {
+                    "formatted": "Princeton University"
+                },
+                "name": {
+                    "formatted": "Jude Nelson"
+                },
+                "twitter": {
+                    "proof": {
+                        "url": "https://twitter.com/judecnelson/status/507374756291555328"
+                    },
+                    "username": "judecnelson"
+                },
+                "v": "0.2",
+                "website": "http://www.cs.princeton.edu/~jcnelson"
+            }
+        }
+        zone_file = get_person_from_legacy_format( legacy_profile )
+        print json.dumps(zone_file, indent=2, sort_keys=True)
+        self.assertTrue(isinstance(zone_file, dict))
 
 def test_main():
     test_support.run_unittest(
