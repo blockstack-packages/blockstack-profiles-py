@@ -40,7 +40,7 @@ def sign_profile_tokens(profile_components, parent_private_key,
 
         token_record = {
             "token": token,
-            "decoded_token": decoded_token,
+            "decodedToken": decoded_token,
             "publicKey": public_key.to_hex(),
             "parentPublicKey": public_key.to_hex(),
             "encrypted": False

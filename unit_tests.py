@@ -10,7 +10,7 @@ from blockstack_profiles import sign_profile_tokens, get_profile_from_tokens, \
 
 class TokeningTests(unittest.TestCase):
     def setUp(self):
-        self.master_private_key = BitcoinPrivateKey()
+        self.master_private_key = BitcoinPrivateKey(compressed=True)
 
     def tearDown(self):
         pass
