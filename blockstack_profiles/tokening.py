@@ -7,13 +7,13 @@ from pybitcoin import BitcoinPrivateKey, BitcoinPublicKey
 
 
 def sign_profile_tokens(profile_components, parent_private_key,
-                        signing_algorithm = 'ES256K'):
+                        signing_algorithm = "ES256K"):
     """ Function for iterating through a list of profile components and
         signing separate individual profile tokens.
     """
 
-    if signing_algorithm == 'ES256K':
-        signing_algorithm = 'ES256'
+    if signing_algorithm == "ES256K":
+        signing_algorithm = "ES256"
     else:
         raise ValueError("Unsupported signing algorithm")
 
@@ -51,7 +51,7 @@ def sign_profile_tokens(profile_components, parent_private_key,
 
 
 def validate_token_record(token_record, parent_public_key,
-                          signing_algorithm = 'ES256'):
+                          signing_algorithm = "ES256"):
     """ A function for validating an individual token record and extracting
         the decoded token.
     """

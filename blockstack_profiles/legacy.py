@@ -21,7 +21,7 @@
     along with blockstack-profiles-py.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-def format_account( service_name, data ):
+def format_account(service_name, data):
     """
     Given profile data and the name of a
     social media service, format it for
@@ -39,17 +39,17 @@ def format_account( service_name, data ):
     ret = {
         "@type": "Account",
         "service": service_name,
-        "identifier": data['username'],
+        "identifier": data["username"],
         "proofType": "http",
     }
         
-    if data.has_key( service_name ) and data[service_name].has_key('proof'):
-        ret["proofUrl"] = data[service_name]['proof']
+    if data.has_key(service_name) and data[service_name].has_key("proof"):
+        ret["proofUrl"] = data[service_name]["proof"]
 
-    return ret 
+    return ret
 
 
-def get_person_from_legacy_format( profile_record ):
+def get_person_from_legacy_format(profile_record):
     """
     Given a whole profile, convert it into 
     zone-file format.  In the full profile JSON,
@@ -60,9 +60,9 @@ def get_person_from_legacy_format( profile_record ):
     Return a dict with the zone-file formatting.
     """
 
-    assert is_profile_legacy_format( profile_record ), "Not a legacy profile"
+    assert is_profile_in_legacy_format(profile_record), "Not a legacy profile"
 
-    profile = profile_record['data_record']
+    profile = profile_record
 
     images = []
     accounts = []
@@ -70,78 +70,96 @@ def get_person_from_legacy_format( profile_record ):
         "@type": "Person"
     }
 
-    if profile.has_key('name') and type(profile['name']) == dict and profile['name'].has_key('formatted'):
-        profileData['name'] = profile['name']['formatted']
+    if profile.has_key("name") and type(profile["name"]) == dict \
+            and profile["name"].has_key("formatted"):
+        profileData["name"] = profile["name"]["formatted"]
 
-    if profile.has_key('bio'):
-        profileData['bio'] = profile['bio']
+    if profile.has_key("bio"):
+        profileData["bio"] = profile["bio"]
 
-    if profile.has_key('location') and type(profile['location']) == dict and profile['location'].has_key('formatted'):
-        profileData['address'] = {
+    if profile.has_key("location") and type(profile["location"]) == dict \
+            and profile["location"].has_key("formatted"):
+        profileData["address"] = {
             "@type": "PostalAddress",
-            "addressLocality": profile['location']['formatted']
+            "addressLocality": profile["location"]["formatted"]
         }
 
-    if profile.has_key('avatar') and type(profile['avatar']) == dict and profile['avatar'].has_key('url'):
+    if profile.has_key("avatar") and type(profile["avatar"]) == dict and \
+            profile["avatar"].has_key("url"):
         images.append({
             "@type": "ImageObject",
             "name": "avatar",
-            "contentUrl": profile['avatar']['url']
+            "contentUrl": profile["avatar"]["url"]
         })
 
-    if profile.has_key('cover') and type(profile['cover']) == dict and profile['cover'].has_key('url'):
+    if profile.has_key("cover") and type(profile["cover"]) == dict and \
+            profile["cover"].has_key("url"):
         images.append({
             "@type": "ImageObject",
             "name": "cover",
-            "contentUrl": profile['cover']['url']
+            "contentUrl": profile["cover"]["url"]
         })
 
     if len(images) > 0:
-        profileData['image'] = images
+        profileData["image"] = images
 
-    if profile.has_key('website') and type(profile['website']) in [str, unicode]:
-        profileData['website'] = [{
+    if profile.has_key("website") and type(profile["website"]) in [str, unicode]:
+        profileData["website"] = [{
             "@type": "WebSite",
-            "url": profile['website']
+            "url": profile["website"]
         }]
 
-    if profile.has_key('bitcoin') and type(profile['bitcoin']) == dict and profile['bitcoin'].has_key('address'):
+    if profile.has_key("bitcoin") and type(profile["bitcoin"]) == dict and \
+            profile["bitcoin"].has_key("address"):
         accounts.append({
             "@type": "Account",
             "role": "payment",
             "service": "bitcoin",
-            "identifier": profile['bitcoin']['address']
+            "identifier": profile["bitcoin"]["address"]
         })
 
-    for service_name in ['twitter', 'facebook', 'github']:
+    for service_name in ["twitter', 'facebook', 'github"]:
         if profile.has_key(service_name):
-            accounts.append( format_account(service_name, profile[service_name]) )
+            accounts.append(
+                format_account(service_name, profile[service_name])
+            )
 
-    if profile.has_key('auth'):
-        if len(profile['auth']) > 0 and type(profile['auth']) == dict:
-            if profile['auth'][0].has_key('publicKeychain'):
+    if profile.has_key("auth"):
+        if len(profile["auth"]) > 0 and type(profile["auth"]) == dict:
+            if profile["auth"][0].has_key("publicKeychain"):
                 accounts.append({
                     "@type": "Account",
                     "role": "key",
                     "service": "bip32",
-                    "identifier": profile['auth'][0]['publicKeychain']
+                    "identifier": profile["auth"][0]["publicKeychain"]
                 })
 
-    if profile.has_key('pgp') and type(profile['pgp']) == dict and profile['pgp'].has_key('url') and profile['pgp'].has_key('fingerprint'):
+    if profile.has_key("pgp") and type(profile["pgp"]) == dict \
+            and profile["pgp"].has_key("url") \
+            and profile["pgp"].has_key("fingerprint"):
         accounts.append({
             "@type": "Account",
             "role": "key",
             "service": "pgp",
-            "identifier": profile['pgp']['fingerprint'],
-            "contentUrl": profile['pgp']['url']
+            "identifier": profile["pgp"]["fingerprint"],
+            "contentUrl": profile["pgp"]["url"]
         })
 
-    profileData['accounts'] = accounts 
+    profileData["accounts"] = accounts 
+
     return profileData
 
 
-def is_profile_legacy_format(profile):
+def is_profile_in_legacy_format(profile):
     """
     Is a given profile JSON object in legacy format?
     """
-    return profile.has_key('data_record')
+    is_in_legacy_format = False
+
+    if profile.has_key("avatar"):
+        is_in_legacy_format = True
+
+    if profile.has_key("bio"):
+        is_in_legacy_format = True
+
+    return is_in_legacy_format

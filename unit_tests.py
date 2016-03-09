@@ -6,97 +6,7 @@ from keychain import PrivateKeychain, PublicKeychain
 from pybitcoin import BitcoinPrivateKey, BitcoinPublicKey
 from blockstack_profiles import sign_profile_tokens, get_profile_from_tokens, \
     create_zone_file, get_person_from_legacy_format 
-
-reference_profiles = {
-    "legacy_1": {
-        "data_record": {
-            "avatar": {
-                "url": "https://s3.amazonaws.com/kd4/judecn"
-            },
-            "bio": "PhD student",
-            "bitcoin": {
-                "address": "17zf596xPvV8Z8ThbWHZHYQZEURSwebsKE"
-            },
-            "cover": {
-                "url": "https://s3.amazonaws.com/97p/gQZ.jpg"
-            },
-            "facebook": {
-                "proof": {
-                    "url": "https://facebook.com/sunspider/posts/674912239245011"
-                },
-                "username": "sunspider"
-            },
-            "github": {
-                "proof": {
-                    "url": "https://gist.github.com/jcnelson/70c02f80f8d4b0b8fc15"
-                },
-                "username": "jcnelson"
-            },
-            "location": {
-                "formatted": "Princeton University"
-            },
-            "name": {
-                "formatted": "Jude Nelson"
-            },
-            "twitter": {
-                "proof": {
-                    "url": "https://twitter.com/judecnelson/status/507374756291555328"
-                },
-                "username": "judecnelson"
-            },
-            "v": "0.2",
-            "website": "http://www.cs.princeton.edu/~jcnelson"
-        }
-    },
-    "legacy_2": {
-        "data_record": {
-            "avatar": {
-                "url": "https://s3.amazonaws.com/kd4/muneeb"
-            },
-            "bio": "Co-founder of Onename (YC S14), final-year PhD candidate at Princeton. Interested in distributed systems and blockchains.",
-            "bitcoin": {
-                "address": "1LNLCwtigWAvLkNakUK4jnmmvdVvmULeES"
-            },
-            "cover": {
-                "url": "https://s3.amazonaws.com/dx3/muneeb"
-            },
-            "facebook": {
-                "proof": {
-                    "url": "https://facebook.com/muneeb.ali/posts/10152524743274123"
-                },
-                "username": "muneeb.ali"
-            },
-            "github": {
-                "proof": {
-                    "url": "https://gist.github.com/muneeb-ali/9838362"
-                },
-                "username": "muneeb-ali"
-            },
-            "graph": {
-                "followee_count": 4,
-                "url": "https://s3.amazonaws.com/grph/muneeb"
-            },
-            "location": {
-                "formatted": "New York, NY"
-            },
-            "name": {
-                "formatted": "Muneeb Ali"
-            },
-            "pgp": {
-                "fingerprint": "9862A3FB338BE9EB6C6A5E05639C89272AFEC540",
-                "url": "http://muneebali.com/static/files/key.asc"
-            },
-            "twitter": {
-                "proof": {
-                    "url": "https://twitter.com/muneeb/status/483765788478689280"
-                },
-                "username": "muneeb"
-            },
-            "v": "0.2",
-            "website": "http://muneebali.com"
-        }
-    }
-}
+from unit_test_data import reference_profiles
 
 class TokeningTests(unittest.TestCase):
     def setUp(self):
@@ -110,10 +20,6 @@ class TokeningTests(unittest.TestCase):
             {"name": "Naval Ravikant"},
             {"birthDate": "1980-01-01"}
         ]
-        reference_profile = {
-            "name": "Naval Ravikant", 
-            "birthDate": "1980-01-01"
-        }
         # tokenize the profile
         profile_token_records = sign_profile_tokens(
             profile_components, self.master_private_key.to_hex())
@@ -124,7 +30,7 @@ class TokeningTests(unittest.TestCase):
             profile_token_records, self.master_private_key.public_key().to_hex())
         # print json.dumps(profile, indent=2)
         self.assertTrue(isinstance(profile, object))
-        self.assertEqual(profile, reference_profile)
+        self.assertEqual(profile, reference_profiles["naval"])
 
 
 class ZonefileTests(unittest.TestCase):
@@ -141,6 +47,7 @@ class ZonefileTests(unittest.TestCase):
         # print json.dumps(zone_file, indent=2)
         self.assertTrue(isinstance(zone_file, dict))
 
+
 class LegacyFormatTests(unittest.TestCase):
     def setUp(self):
         pass
@@ -149,12 +56,12 @@ class LegacyFormatTests(unittest.TestCase):
         pass
 
     def test_profile_format_migration(self):
-        zone_file = get_person_from_legacy_format(reference_profiles["legacy_1"])
+        zone_file = get_person_from_legacy_format(reference_profiles["jude"])
         # print json.dumps(zone_file, indent=2, sort_keys=True)
         self.assertTrue(isinstance(zone_file, dict))
 
     def test_profile_format_migration_2(self):
-        zone_file = get_person_from_legacy_format(reference_profiles["legacy_2"])
+        zone_file = get_person_from_legacy_format(reference_profiles["muneeb"])
         # print json.dumps(zone_file, indent=2, sort_keys=True)
         self.assertTrue(isinstance(zone_file, dict))
 
