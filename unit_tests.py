@@ -6,7 +6,7 @@ from keychain import PrivateKeychain, PublicKeychain
 from pybitcoin import BitcoinPrivateKey, BitcoinPublicKey
 from blockstack_profiles import sign_profile_tokens, get_profile_from_tokens, \
     create_zone_file, get_person_from_legacy_format 
-from unit_test_data import reference_profiles
+from test_data import reference_profiles
 
 class TokeningTests(unittest.TestCase):
     def setUp(self):
@@ -23,7 +23,7 @@ class TokeningTests(unittest.TestCase):
         # tokenize the profile
         profile_token_records = sign_profile_tokens(
             profile_components, self.master_private_key.to_hex())
-        # print json.dumps(profile_token_records, indent=2)
+        print json.dumps(profile_token_records, indent=2)
         self.assertTrue(isinstance(profile_token_records, list))
         # recover the profile
         profile = get_profile_from_tokens(
