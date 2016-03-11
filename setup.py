@@ -8,7 +8,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='blockstack-schema',
-    version='0.1.2',
+    version='0.1.3',
     url='https://github.com/blockstack/blockstack-schema-py',
     license='MIT',
     author='Blockstack Developers',
@@ -21,7 +21,7 @@ setup(
         'jwtpy==0.1.0',
         'keychain==0.1.4',
         'pybitcoin==0.9.8',
-        'zonefile==0.0.0'
+        'zone_file==0.0.1'
     ],
     classifiers=[
         'Intended Audience :: Developers',
