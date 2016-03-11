@@ -20,7 +20,8 @@ setup(
     install_requires=[
         'jwtpy==0.1.0',
         'keychain==0.1.4',
-        'pybitcoin==0.9.8'
+        'pybitcoin==0.9.8',
+        'zonefile==0.0.0'
     ],
     classifiers=[
         'Intended Audience :: Developers',

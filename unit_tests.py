@@ -5,7 +5,7 @@ from test import test_support
 from keychain import PrivateKeychain, PublicKeychain
 from pybitcoin import BitcoinPrivateKey, BitcoinPublicKey
 from blockstack_schema import sign_records, get_profile_from_tokens, \
-    create_zone_file, get_person_from_legacy_format 
+    make_zone_file_for_hosted_file, get_person_from_legacy_format 
 from test_data import reference_profiles
 
 class TokeningTests(unittest.TestCase):
@@ -43,9 +43,9 @@ class ZonefileTests(unittest.TestCase):
     def test_zone_file_creation(self):
         origin = "naval.id"
         token_file_url = "https://mq9.s3.amazonaws.com/naval.id/profile.json"
-        zone_file = create_zone_file(origin, token_file_url)
-        # print json.dumps(zone_file, indent=2)
-        self.assertTrue(isinstance(zone_file, dict))
+        zone_file = make_zone_file_for_hosted_file(origin, token_file_url)
+        print zone_file
+        self.assertTrue(isinstance(zone_file, (unicode, str)))
 
 
 class LegacyFormatTests(unittest.TestCase):
