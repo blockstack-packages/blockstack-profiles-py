@@ -7,13 +7,13 @@ Blockstack Profiles
 from setuptools import setup, find_packages
 
 setup(
-    name='blockstack-profiles',
+    name='blockstack-schema',
     version='0.1.0',
-    url='https://github.com/blockstack/blockstack-profiles-py',
+    url='https://github.com/blockstack/blockstack-schema-py',
     license='MIT',
     author='Blockstack Developers',
     author_email='hello@onename.com',
-    description="""Library for blockstack profile generation""",
+    description="""Library for blockstack schema + profile generation and validation""",
     keywords='bitcoin blockchain blockstack',
     packages=find_packages(),
     zip_safe=False,

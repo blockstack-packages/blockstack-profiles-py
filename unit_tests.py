@@ -4,7 +4,7 @@ import unittest
 from test import test_support
 from keychain import PrivateKeychain, PublicKeychain
 from pybitcoin import BitcoinPrivateKey, BitcoinPublicKey
-from blockstack_profiles import sign_profile_tokens, get_profile_from_tokens, \
+from blockstack_schema import sign_profile_tokens, get_profile_from_tokens, \
     create_zone_file, get_person_from_legacy_format 
 from test_data import reference_profiles
 

@@ -1,4 +1,4 @@
-# Blockstack Profiles Python
+# Blockstack Schema Python
 
 [![CircleCI](https://img.shields.io/circleci/project/blockstack/blockstack-profiles-py.svg)](https://circleci.com/gh/blockstack/blockstack-profiles-py)
 [![PyPI](https://img.shields.io/pypi/v/blockstack-profiles.svg)](https://pypi.python.org/pypi/blockstack-profiles/)
@@ -9,7 +9,7 @@
 ### Importing
 
 ```python
-from blockstack_profiles import sign_profile_tokens, get_profile_from_tokens, create_zone_file
+from blockstack_schema import sign_profile_tokens, get_profile_from_tokens, create_zone_file
 from pybitcoin import BitcoinPrivateKey, BitcoinPublicKey
 ```
 
