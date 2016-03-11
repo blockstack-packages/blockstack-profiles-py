@@ -9,7 +9,7 @@
 ### Importing
 
 ```python
-from blockstack_schema import sign_profile_tokens, get_profile_from_tokens, create_zone_file
+from blockstack_schema import sign_records, get_profile_from_tokens, create_zone_file
 from pybitcoin import BitcoinPrivateKey, BitcoinPublicKey
 ```
 
@@ -27,7 +27,7 @@ profile_components = [
 
 ```python
 master_private_key = BitcoinPrivateKey()
-token_records = sign_profile_tokens(profile_components, master_private_key.to_hex())
+token_records = sign_records(profile_components, master_private_key.to_hex())
 ```
 
 ```python

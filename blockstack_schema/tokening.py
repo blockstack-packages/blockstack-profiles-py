@@ -6,8 +6,30 @@ from pybitcoin import BitcoinPrivateKey, BitcoinPublicKey
 from jwtpy import TokenSigner, TokenVerifier, decode_token
 
 
-def sign_profile_tokens(profile_components, parent_private_key,
-                        signing_algorithm = "ES256K"):
+def sign_record(claim, subject, private_key_pem, signing_algorithm="ES256K"):
+    current_time = datetime.datetime.now()
+
+    payload = {
+        "claim": claim,
+        "subject": subject,
+        "issuedAt": current_time.isoformat(),
+        "expiresAt": current_time.replace(current_time.year + 1).isoformat()
+    }
+
+    token_signer = TokenSigner()
+    token = token_signer.sign(payload, private_key_pem)
+    decoded_token = decode_token(token)
+
+    token_record = {
+        "token": token,
+        "decodedToken": decoded_token,
+        "encrypted": False
+    }
+    return token_record
+
+
+def sign_records(profile_components, parent_private_key,
+                 signing_algorithm = "ES256K"):
     """ Function for iterating through a list of profile components and
         signing separate individual profile tokens.
     """
@@ -18,32 +40,18 @@ def sign_profile_tokens(profile_components, parent_private_key,
         raise ValueError("Unsupported signing algorithm")
 
     token_records = []
-    current_time = datetime.datetime.now()
 
     for profile_component in profile_components:
         private_key = BitcoinPrivateKey(parent_private_key)
         public_key = private_key.public_key()
-
-        payload = {
-            "claim": profile_component,
-            "subject": {
-                "publicKey": public_key.to_hex()
-            },
-            "issuedAt": current_time.isoformat(),
-            "expiresAt": current_time.replace(current_time.year + 1).isoformat()
+        subject = {
+            "publicKey": public_key.to_hex()
         }
-
-        token_signer = TokenSigner()
-        token = token_signer.sign(payload, private_key.to_pem())
-        decoded_token = decode_token(token)
-
-        token_record = {
-            "token": token,
-            "decodedToken": decoded_token,
-            "publicKey": public_key.to_hex(),
-            "parentPublicKey": public_key.to_hex(),
-            "encrypted": False
-        }
+        token_record = sign_record(
+            profile_component, subject, private_key.to_pem(),
+            signing_algorithm=signing_algorithm)
+        token_record["publicKey"] = public_key.to_hex()
+        token_record["parentPublicKey"] = public_key.to_hex()
         token_records.append(token_record)
 
     return token_records
