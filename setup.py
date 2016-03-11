@@ -22,7 +22,7 @@ setup(
         'jwtpy==0.1.0',
         'keychain==0.1.4',
         'pybitcoin==0.9.8',
-        'zone_file==0.1.2'
+        'zone-file==0.1.2'
     ],
     classifiers=[
         'Intended Audience :: Developers',
