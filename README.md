@@ -1,15 +1,15 @@
-# Blockstack Schema Python
+# Blockstack Profiles Python
 
-[![CircleCI](https://img.shields.io/circleci/project/blockstack/blockstack-schema-py.svg)](https://circleci.com/gh/blockstack/blockstack-schema-py)
-[![PyPI](https://img.shields.io/pypi/v/blockstack-schema.svg)](https://pypi.python.org/pypi/blockstack-schema/)
-[![PyPI](https://img.shields.io/pypi/dm/blockstack-schema.svg)](https://pypi.python.org/pypi/blockstack-schema/)
-[![PyPI](https://img.shields.io/pypi/l/blockstack-schema.svg)](https://pypi.python.org/pypi/blockstack-schema/)
+[![CircleCI](https://img.shields.io/circleci/project/blockstack/blockstack-profiles-py.svg)](https://circleci.com/gh/blockstack/blockstack-profiles-py)
+[![PyPI](https://img.shields.io/pypi/v/blockstack-profiles.svg)](https://pypi.python.org/pypi/blockstack-profiles/)
+[![PyPI](https://img.shields.io/pypi/dm/blockstack-profiles.svg)](https://pypi.python.org/pypi/blockstack-profiles/)
+[![PyPI](https://img.shields.io/pypi/l/blockstack-profiles.svg)](https://pypi.python.org/pypi/blockstack-profiles/)
 [![Slack](http://slack.blockstack.org/badge.svg)](http://slack.blockstack.org/)
 
 ### Importing
 
 ```python
-from blockstack_schema import sign_records, get_profile_from_tokens, create_zone_file
+from blockstack_profiles import sign_records, get_profile_from_tokens, create_zone_file
 from pybitcoin import BitcoinPrivateKey, BitcoinPublicKey
 ```
 
