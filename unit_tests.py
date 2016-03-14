@@ -10,6 +10,7 @@ from blockstack_profiles import (
 )
 from test_data import reference_profiles
 
+
 class TokeningTests(unittest.TestCase):
     def setUp(self):
         self.master_private_key = BitcoinPrivateKey(compressed=True)

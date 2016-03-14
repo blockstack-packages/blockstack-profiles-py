@@ -8,7 +8,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='blockstack-profiles',
-    version='0.1.0',
+    version='0.1.1',
     url='https://github.com/blockstack/blockstack-profiles-py',
     license='MIT',
     author='Blockstack Developers',
@@ -18,11 +18,10 @@ setup(
     packages=find_packages(),
     zip_safe=False,
     install_requires=[
-        'cryptography==1.2.3',
-        'jsontokens==0.0.0',
-        'keychain==0.1.4',
-        'pybitcoin==0.9.8',
-        'zone-file==0.1.2'
+        'jsontokens>=0.0.2',
+        'keylib>=0.0.2',
+        'keychain>=0.1.4',
+        'zone-file>=0.1.2'
     ],
     classifiers=[
         'Intended Audience :: Developers',

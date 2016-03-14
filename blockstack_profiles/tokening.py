@@ -2,7 +2,7 @@ import json
 import ecdsa
 import datetime
 from keychain import PrivateKeychain, PublicKeychain
-from pybitcoin import BitcoinPrivateKey, BitcoinPublicKey
+from keylib import ECPrivateKey, ECPublicKey
 from jsontokens import TokenSigner, TokenVerifier, decode_token
 
 
@@ -42,7 +42,7 @@ def sign_records(profile_components, parent_private_key,
     token_records = []
 
     for profile_component in profile_components:
-        private_key = BitcoinPrivateKey(parent_private_key)
+        private_key = ECPrivateKey(parent_private_key)
         public_key = private_key.public_key()
         subject = {
             "publicKey": public_key.to_hex()
@@ -69,7 +69,7 @@ def validate_token_record(token_record, parent_public_key,
 
     token = token_record["token"]
 
-    public_key = BitcoinPublicKey(parent_public_key)
+    public_key = ECPublicKey(parent_public_key)
 
     token_verifier = TokenVerifier()
     token_is_valid = token_verifier.verify(token, public_key.to_pem())
