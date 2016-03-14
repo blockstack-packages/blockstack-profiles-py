@@ -3,7 +3,7 @@ import ecdsa
 import datetime
 from keychain import PrivateKeychain, PublicKeychain
 from pybitcoin import BitcoinPrivateKey, BitcoinPublicKey
-from jwtpy import TokenSigner, TokenVerifier, decode_token
+from jsontokens import TokenSigner, TokenVerifier, decode_token
 
 
 def sign_record(claim, subject, private_key_pem, signing_algorithm="ES256K"):

@@ -36,17 +36,16 @@ def format_account(service_name, data):
 
     assert 'username' in data, "Missing username"
 
-    ret = {
+    account = {
         "@type": "Account",
         "service": service_name,
         "identifier": data["username"],
-        "proofType": "http",
+        "proofType": "http"
     }
-        
     if data.has_key(service_name) and data[service_name].has_key("proof"):
-        ret["proofUrl"] = data[service_name]["proof"]
+        account["proofUrl"] = data[service_name]["proof"]
 
-    return ret
+    return account
 
 
 def get_person_from_legacy_format(profile_record):
@@ -66,20 +65,20 @@ def get_person_from_legacy_format(profile_record):
 
     images = []
     accounts = []
-    profileData = {
+    profile_data = {
         "@type": "Person"
     }
 
     if profile.has_key("name") and type(profile["name"]) == dict \
             and profile["name"].has_key("formatted"):
-        profileData["name"] = profile["name"]["formatted"]
+        profile_data["name"] = profile["name"]["formatted"]
 
     if profile.has_key("bio"):
-        profileData["bio"] = profile["bio"]
+        profile_data["bio"] = profile["bio"]
 
     if profile.has_key("location") and type(profile["location"]) == dict \
             and profile["location"].has_key("formatted"):
-        profileData["address"] = {
+        profile_data["address"] = {
             "@type": "PostalAddress",
             "addressLocality": profile["location"]["formatted"]
         }
@@ -101,10 +100,10 @@ def get_person_from_legacy_format(profile_record):
         })
 
     if len(images) > 0:
-        profileData["image"] = images
+        profile_data["image"] = images
 
     if profile.has_key("website") and type(profile["website"]) in [str, unicode]:
-        profileData["website"] = [{
+        profile_data["website"] = [{
             "@type": "WebSite",
             "url": profile["website"]
         }]
@@ -145,9 +144,9 @@ def get_person_from_legacy_format(profile_record):
             "contentUrl": profile["pgp"]["url"]
         })
 
-    profileData["accounts"] = accounts 
+    profile_data["accounts"] = accounts 
 
-    return profileData
+    return profile_data
 
 
 def is_profile_in_legacy_format(profile):

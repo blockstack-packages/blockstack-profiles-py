@@ -4,8 +4,10 @@ import unittest
 from test import test_support
 from keychain import PrivateKeychain, PublicKeychain
 from pybitcoin import BitcoinPrivateKey, BitcoinPublicKey
-from blockstack_schema import sign_records, get_profile_from_tokens, \
-    make_zone_file_for_hosted_file, get_person_from_legacy_format 
+from blockstack_profiles import (
+    sign_records, get_profile_from_tokens, make_zone_file_for_hosted_file,
+    get_person_from_legacy_format 
+)
 from test_data import reference_profiles
 
 class TokeningTests(unittest.TestCase):
