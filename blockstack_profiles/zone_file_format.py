@@ -4,7 +4,7 @@ def make_zone_file_for_hosted_data(origin, token_file_url, ttl=3600):
     if "://" not in token_file_url:
         raise ValueError("Invalid token file URL")
     records = {
-        "URI" [
+        "URI": [
             {
                 "name": "@",
                 "weight": 1,
