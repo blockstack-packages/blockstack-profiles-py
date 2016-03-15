@@ -21,7 +21,7 @@ setup(
         'jsontokens>=0.0.2',
         'keylib>=0.0.2',
         'keychain>=0.1.4',
-        'zone-file>=0.1.2'
+        'zone-file>=0.1.3'
     ],
     classifiers=[
         'Intended Audience :: Developers',
