@@ -90,5 +90,5 @@ zone_file = make_zone_file_for_hosted_file("naval.id", "https://mq9.s3.amazonaws
 ```python
 $ORIGIN naval.id
 $TTL 3600
-@ IN URI https://mq9.s3.amazonaws.com/naval.id/profile.json
+@ IN URI "https://mq9.s3.amazonaws.com/naval.id/profile.json"
 ```
