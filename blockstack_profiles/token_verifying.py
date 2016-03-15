@@ -6,8 +6,8 @@ from keylib import ECPrivateKey, ECPublicKey
 from jsontokens import TokenSigner, TokenVerifier, decode_token
 
 
-def validate_token_record(token_record, public_key,
-                          signing_algorithm="ES256"):
+def verify_token_record(token_record, public_key,
+                        signing_algorithm="ES256"):
     """ A function for validating an individual token record and extracting
         the decoded token.
     """
@@ -57,7 +57,7 @@ def get_profile_from_tokens(token_records, public_key,
 
     for token_record in token_records:
         try:
-            decoded_token = validate_token_record(token_record, public_key)
+            decoded_token = verify_token_record(token_record, public_key)
         except ValueError:
             continue
         else:

@@ -1,6 +1,6 @@
 from zone_file import make_zone_file
 
-def make_zone_file_for_hosted_file(origin, token_file_url, ttl=3600):
+def make_zone_file_for_hosted_data(origin, token_file_url, ttl=3600):
     if "://" not in token_file_url:
         raise ValueError("Invalid token file URL")
     records = [{
