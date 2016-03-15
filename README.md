@@ -6,10 +6,16 @@
 [![PyPI](https://img.shields.io/pypi/l/blockstack-profiles.svg)](https://pypi.python.org/pypi/blockstack-profiles/)
 [![Slack](http://slack.blockstack.org/badge.svg)](http://slack.blockstack.org/)
 
+### Installation
+
+```bash
+$ pip install blockstack-profiles
+```
+
 ### Importing
 
 ```python
-from blockstack_profiles import sign_token_records, get_profile_from_tokens, make_zone_file_for_hosted_file
+from blockstack_profiles import sign_token_records, validate_token_record, get_profile_from_tokens, make_zone_file_for_hosted_file
 ```
 
 ### Creating Profiles
@@ -66,6 +72,12 @@ token_records = sign_token_records(profile_components, 'c4bbcb1fbec99d65bf59d85c
 ]
 ```
 
+### Verifying Token Records
+
+```python
+decoded_token = verify_token_record(token_records[0])
+```
+
 ### Recovering Profiles
 
 ```python
@@ -87,7 +99,7 @@ profile = get_profile_from_tokens(profile_tokens, master_public_key.to_hex())
 zone_file = make_zone_file_for_hosted_file("naval.id", "https://mq9.s3.amazonaws.com/naval.id/profile.json")
 ```
 
-```python
+```
 $ORIGIN naval.id
 $TTL 3600
 @ IN URI "https://mq9.s3.amazonaws.com/naval.id/profile.json"
