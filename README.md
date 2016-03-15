@@ -9,8 +9,7 @@
 ### Importing
 
 ```python
-from blockstack_profiles import sign_records, get_profile_from_tokens, create_zone_file
-from pybitcoin import BitcoinPrivateKey, BitcoinPublicKey
+from blockstack_profiles import sign_token_records, get_profile_from_tokens, make_zone_file_for_hosted_file
 ```
 
 ### Creating Profiles
@@ -26,8 +25,7 @@ profile_components = [
 ### Tokenizing Profiles
 
 ```python
-master_private_key = BitcoinPrivateKey()
-token_records = sign_records(profile_components, master_private_key.to_hex())
+token_records = sign_token_records(profile_components, 'c4bbcb1fbec99d65bf59d85c8cb62ee2db963f0fe106f483d9afa73bd4e39a8a')
 ```
 
 ```python
@@ -86,25 +84,11 @@ profile = get_profile_from_tokens(profile_tokens, master_public_key.to_hex())
 ### Creating Zone Files
 
 ```python
-zone_file = create_zone_file("naval.id", "https://mq9.s3.amazonaws.com/naval.id/profile.json")
+zone_file = make_zone_file_for_hosted_file("naval.id", "https://mq9.s3.amazonaws.com/naval.id/profile.json")
 ```
 
 ```python
->>> print zone_file
-{
-  "txt": [
-    {
-      "txt": "pathname: /naval.id/profile.json", 
-      "name": "@"
-    }
-  ], 
-  "cname": [
-    {
-      "alias": "mq9.s3.amazonaws.com", 
-      "name": "@"
-    }
-  ], 
-  "$ttl": 3600, 
-  "$origin": "naval.id"
-}
+$ORIGIN naval.id
+$TTL 3600
+@ IN URI https://mq9.s3.amazonaws.com/naval.id/profile.json
 ```
