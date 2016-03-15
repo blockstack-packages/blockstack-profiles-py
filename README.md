@@ -15,7 +15,7 @@ $ pip install blockstack-profiles
 ### Importing
 
 ```python
-from blockstack_profiles import sign_token_records, validate_token_record, get_profile_from_tokens, make_zone_file_for_hosted_file
+from blockstack_profiles import sign_token_records, validate_token_record, get_profile_from_tokens, make_zone_file_for_hosted_data
 ```
 
 ### Creating Profiles
@@ -31,7 +31,7 @@ profile_components = [
 ### Tokenizing Profiles
 
 ```python
-token_records = sign_token_records(profile_components, 'c4bbcb1fbec99d65bf59d85c8cb62ee2db963f0fe106f483d9afa73bd4e39a8a')
+token_records = sign_token_records(profile_components, "89088e4779c49c8c3210caae38df06193359417036d87d3cc8888dcfe579905701")
 ```
 
 ```python
@@ -45,13 +45,13 @@ token_records = sign_token_records(profile_components, 'c4bbcb1fbec99d65bf59d85c
       }, 
       "expiresAt": "2017-03-02T18:59:29.043308", 
       "subject": {
-        "publicKey": "03e9953cb184b0c253e1c5a96df4cb9933bf89ed2df5bd79b02f71ccfe5ec50268"
+        "publicKey": "02f1fd79dcd51bd017f71546ddc0fd3c8fb7de673da8661c4ceec0463dc991cc7e"
       }
     }, 
     "token": "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3N1ZWRBdCI6IjIwMTYtMDMtMDJUMTg6NTk6MjkuMDQzMzA4IiwiY2xhaW0iOnsibmFtZSI6Ik5hdmFsIFJhdmlrYW50In0sImV4cGlyZXNBdCI6IjIwMTctMDMtMDJUMTg6NTk6MjkuMDQzMzA4Iiwic3ViamVjdCI6eyJwdWJsaWNLZXkiOiIwM2U5OTUzY2IxODRiMGMyNTNlMWM1YTk2ZGY0Y2I5OTMzYmY4OWVkMmRmNWJkNzliMDJmNzFjY2ZlNWVjNTAyNjgifX0.0qQbEXTsDSbswL2qfMVzMuYU503ddfclXz3ict1rh85arXX47DW51814n1OFOAzjGoeDvsQXpfG3hB2dMHuIEw", 
-    "parentPublicKey": "03e9953cb184b0c253e1c5a96df4cb9933bf89ed2df5bd79b02f71ccfe5ec50268", 
+    "parentPublicKey": "02f1fd79dcd51bd017f71546ddc0fd3c8fb7de673da8661c4ceec0463dc991cc7e", 
     "encrypted": false, 
-    "publicKey": "03e9953cb184b0c253e1c5a96df4cb9933bf89ed2df5bd79b02f71ccfe5ec50268"
+    "publicKey": "02f1fd79dcd51bd017f71546ddc0fd3c8fb7de673da8661c4ceec0463dc991cc7e"
   }, 
   {
     "decoded_token": {
@@ -61,13 +61,13 @@ token_records = sign_token_records(profile_components, 'c4bbcb1fbec99d65bf59d85c
       }, 
       "expiresAt": "2017-03-02T18:59:29.043308", 
       "subject": {
-        "publicKey": "03e9953cb184b0c253e1c5a96df4cb9933bf89ed2df5bd79b02f71ccfe5ec50268"
+        "publicKey": "02f1fd79dcd51bd017f71546ddc0fd3c8fb7de673da8661c4ceec0463dc991cc7e"
       }
     }, 
     "token": "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3N1ZWRBdCI6IjIwMTYtMDMtMDJUMTg6NTk6MjkuMDQzMzA4IiwiY2xhaW0iOnsiYmlydGhEYXRlIjoiMTk4MC0wMS0wMSJ9LCJleHBpcmVzQXQiOiIyMDE3LTAzLTAyVDE4OjU5OjI5LjA0MzMwOCIsInN1YmplY3QiOnsicHVibGljS2V5IjoiMDNlOTk1M2NiMTg0YjBjMjUzZTFjNWE5NmRmNGNiOTkzM2JmODllZDJkZjViZDc5YjAyZjcxY2NmZTVlYzUwMjY4In19.m-v3mrPtXaNSltBvWfOLnpPerIxJhQQOt0-x-Lyw1A-iGp_dq8TPLrYGqo4UfcBfqva52-N5eSCN6c1pKgSLDQ", 
-    "parentPublicKey": "03e9953cb184b0c253e1c5a96df4cb9933bf89ed2df5bd79b02f71ccfe5ec50268", 
+    "parentPublicKey": "02f1fd79dcd51bd017f71546ddc0fd3c8fb7de673da8661c4ceec0463dc991cc7e", 
     "encrypted": false, 
-    "publicKey": "03e9953cb184b0c253e1c5a96df4cb9933bf89ed2df5bd79b02f71ccfe5ec50268"
+    "publicKey": "02f1fd79dcd51bd017f71546ddc0fd3c8fb7de673da8661c4ceec0463dc991cc7e"
   }
 ]
 ```
@@ -81,8 +81,7 @@ decoded_token = verify_token_record(token_records[0])
 ### Recovering Profiles
 
 ```python
-master_public_key = master_private_key.public_key()
-profile = get_profile_from_tokens(profile_tokens, master_public_key.to_hex())
+profile = get_profile_from_tokens(profile_tokens, "02f1fd79dcd51bd017f71546ddc0fd3c8fb7de673da8661c4ceec0463dc991cc7e")
 ```
 
 ```
@@ -96,7 +95,7 @@ profile = get_profile_from_tokens(profile_tokens, master_public_key.to_hex())
 ### Creating Zone Files
 
 ```python
-zone_file = make_zone_file_for_hosted_file("naval.id", "https://mq9.s3.amazonaws.com/naval.id/profile.json")
+zone_file = make_zone_file_for_hosted_data("naval.id", "https://mq9.s3.amazonaws.com/naval.id/profile.json")
 ```
 
 ```
