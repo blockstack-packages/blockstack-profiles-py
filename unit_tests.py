@@ -53,8 +53,11 @@ class ZonefileTests(unittest.TestCase):
         origin = "naval.id"
         token_file_url = "https://mq9.s3.amazonaws.com/naval.id/profile.json"
         zone_file = make_zone_file_for_hosted_data(origin, token_file_url)
-        # print zone_file
+        #print zone_file
         self.assertTrue(isinstance(zone_file, (unicode, str)))
+        self.assertTrue("$ORIGIN" in zone_file)
+        self.assertTrue("$TTL" in zone_file)
+        self.assertTrue("@ URI" in zone_file)
 
 
 class LegacyFormatTests(unittest.TestCase):
