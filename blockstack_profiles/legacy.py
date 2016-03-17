@@ -153,12 +153,27 @@ def is_profile_in_legacy_format(profile):
     """
     Is a given profile JSON object in legacy format?
     """
+    if profile.has_key("@type"):
+        return False
+
+    if profile.has_key("@context"):
+        return False
+
     is_in_legacy_format = False
 
     if profile.has_key("avatar"):
         is_in_legacy_format = True
 
+    if profile.has_key("cover"):
+        is_in_legacy_format = True
+
     if profile.has_key("bio"):
+        is_in_legacy_format = True
+
+    if profile.has_key("twitter"):
+        is_in_legacy_format = True
+
+    if profile.has_key("facebook"):
         is_in_legacy_format = True
 
     return is_in_legacy_format

@@ -28,7 +28,7 @@ class TokeningTests(unittest.TestCase):
         # tokenize the profile
         profile_token_records = sign_token_records(
             profile_components, self.master_private_key.to_hex())
-        print json.dumps(profile_token_records, indent=2)
+        # print json.dumps(profile_token_records, indent=2)
         self.assertTrue(isinstance(profile_token_records, list))
         # verify the token records
         for token_record in profile_token_records:
@@ -53,7 +53,7 @@ class ZonefileTests(unittest.TestCase):
         origin = "naval.id"
         token_file_url = "https://mq9.s3.amazonaws.com/naval.id/profile.json"
         zone_file = make_zone_file_for_hosted_data(origin, token_file_url)
-        print zone_file
+        # print zone_file
         self.assertTrue(isinstance(zone_file, (unicode, str)))
 
 
