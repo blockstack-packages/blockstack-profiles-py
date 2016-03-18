@@ -8,7 +8,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='blockstack-profiles',
-    version='0.1.6',
+    version='0.2.0',
     url='https://github.com/blockstack/blockstack-profiles-py',
     license='MIT',
     author='Blockstack Developers',
