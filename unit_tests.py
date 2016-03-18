@@ -2,7 +2,6 @@ import json
 import traceback
 import unittest
 from test import test_support
-from keychain import PrivateKeychain, PublicKeychain
 from keylib import ECPrivateKey, ECPublicKey
 from blockstack_profiles import (
     sign_token_record, sign_token_records, verify_token_record,
