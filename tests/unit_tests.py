@@ -3,7 +3,7 @@ import traceback
 import unittest
 from test import test_support
 from keylib import ECPrivateKey, ECPublicKey
-from blockstack_profiles import (
+from blockstack_schema import (
     sign_token_record, sign_token_records, verify_token_record,
     get_profile_from_tokens,
     make_zone_file_for_hosted_data,
