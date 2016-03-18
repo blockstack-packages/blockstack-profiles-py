@@ -39,7 +39,6 @@ class TokeningTests(unittest.TestCase):
         # print json.dumps(profile, indent=2)
         self.assertTrue(isinstance(profile, object))
         self.assertEqual(profile, reference_profiles["naval"])
-        self.assertTrue(False)
 
 
 class ZonefileTests(unittest.TestCase):

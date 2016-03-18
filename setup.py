@@ -18,6 +18,7 @@ setup(
     packages=find_packages(),
     zip_safe=False,
     install_requires=[
+        'cryptography>=1.2.3',
         'jsontokens>=0.0.2',
         'keylib>=0.0.2',
         'zone-file>=0.1.5'
