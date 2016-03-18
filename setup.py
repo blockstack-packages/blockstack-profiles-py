@@ -7,8 +7,8 @@ Blockstack Profiles
 from setuptools import setup, find_packages
 
 setup(
-    name='blockstack-schema',
-    version='0.2.0',
+    name='blockstack-profiles',
+    version='0.3.0',
     url='https://github.com/blockstack/blockstack-profiles-py',
     license='MIT',
     author='Blockstack Developers',
