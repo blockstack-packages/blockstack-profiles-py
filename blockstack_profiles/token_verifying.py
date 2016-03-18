@@ -1,7 +1,6 @@
 import json
 import ecdsa
 import datetime
-from keychain import PrivateKeychain, PublicKeychain
 from keylib import ECPrivateKey, ECPublicKey
 from jsontokens import TokenSigner, TokenVerifier, decode_token
 

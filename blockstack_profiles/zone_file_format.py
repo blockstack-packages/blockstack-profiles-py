@@ -8,8 +8,8 @@ def make_zone_file_for_hosted_data(origin, token_file_url, ttl=3600):
         "$origin": origin,
         "uri": [{
             "name": "@",
-            "weight": 1,
             "priority": 10,
+            "weight": 1,
             "target": token_file_url
         }]
     }
