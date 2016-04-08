@@ -74,8 +74,18 @@ token_records = sign_token_records(profile_components, "89088e4779c49c8c3210caae
 
 ### Verifying Token Records
 
+#### Verifying Against Public Keys
+
 ```python
-decoded_token = verify_token_record(token_records[0])
+public_key = "030589ee559348bd6a7325994f9c8eff12bd5d73cc683142bd0dd1a17abc99b0dc"
+decoded_token = verify_token_record(token_records[0], public_key)
+```
+
+#### Verifying Against Addresses
+
+```python
+address = "1KbUJ4x8epz6QqxkmZbTc4f79JbWWz6g37"
+decoded_token = verify_token_record(token_records[0], address)
 ```
 
 ### Recovering Profiles
