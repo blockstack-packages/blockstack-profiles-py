@@ -15,30 +15,42 @@ from test_data import reference_profiles
 class TokeningTests(unittest.TestCase):
     def setUp(self):
         self.master_private_key = ECPrivateKey(compressed=True)
+        self.profile_components = [
+            {"name": "Naval Ravikant"},
+            {"birthDate": "1980-01-01"}
+        ]
 
     def tearDown(self):
         pass
 
-    def test_basic_tokening(self):
-        profile_components = [
-            {"name": "Naval Ravikant"},
-            {"birthDate": "1980-01-01"}
-        ]
+    def test_token_verification_and_recovery(self):
         # tokenize the profile
         profile_token_records = sign_token_records(
-            profile_components, self.master_private_key.to_hex())
+            self.profile_components, self.master_private_key.to_hex())
         # print json.dumps(profile_token_records, indent=2)
         self.assertTrue(isinstance(profile_token_records, list))
         # verify the token records
         for token_record in profile_token_records:
-            decoded_token = verify_token_record(token_record, self.master_private_key.public_key().to_hex())
+            public_key = self.master_private_key.public_key().to_hex()
+            decoded_token = verify_token_record(token_record, public_key)
             self.assertTrue(isinstance(decoded_token, dict))
+
         # recover the profile
         profile = get_profile_from_tokens(
             profile_token_records, self.master_private_key.public_key().to_hex())
         # print json.dumps(profile, indent=2)
         self.assertTrue(isinstance(profile, object))
         self.assertEqual(profile, reference_profiles["naval"])
+
+    def test_token_verification_with_address(self):
+        profile_token_records = sign_token_records(
+            self.profile_components, self.master_private_key.to_hex())
+        self.assertTrue(isinstance(profile_token_records, list))
+
+        for token_record in profile_token_records:
+            address = self.master_private_key.public_key().address()
+            decoded_token = verify_token_record(token_record, address)
+            self.assertTrue(isinstance(decoded_token, dict))
 
 
 class ZonefileTests(unittest.TestCase):
