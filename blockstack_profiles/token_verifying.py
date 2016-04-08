@@ -1,11 +1,11 @@
 import json
 import ecdsa
 import datetime
-from keylib import ECPrivateKey, ECPublicKey
+from keylib import ECPrivateKey, ECPublicKey, public_key_to_address
 from jsontokens import TokenSigner, TokenVerifier, decode_token
 
 
-def verify_token_record(token_record, public_key,
+def verify_token_record(token_record, verifier,
                         signing_algorithm="ES256"):
     """ A function for validating an individual token record and extracting
         the decoded token.
@@ -16,8 +16,16 @@ def verify_token_record(token_record, public_key,
         raise ValueError("Invalid token record")
 
     token = token_record["token"]
+    token_record_public_key = token_record["publicKey"]
 
-    public_key = ECPublicKey(public_key)
+    if verifier == token_record_public_key:
+        pass
+    elif verifier == public_key_to_address(token_record_public_key):
+        pass
+    else:
+        raise ValueError("Token public key doesn't match")
+
+    public_key = ECPublicKey(token_record_public_key)
 
     token_verifier = TokenVerifier()
     token_is_valid = token_verifier.verify(token, public_key.to_pem())
