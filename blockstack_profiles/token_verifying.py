@@ -20,7 +20,7 @@ def verify_token_record(token_record, verifier,
 
     if verifier == token_record_public_key:
         pass
-    elif verifier == public_key_to_address(token_record_public_key):
+    elif verifier == public_key_to_address(str(token_record_public_key)):
         pass
     else:
         raise ValueError("Token public key doesn't match")
