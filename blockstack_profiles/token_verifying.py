@@ -16,11 +16,11 @@ def verify_token_record(token_record, verifier,
         raise ValueError("Invalid token record")
 
     token = token_record["token"]
-    token_record_public_key = token_record["publicKey"]
+    token_record_public_key = str(token_record["publicKey"])
 
     if verifier == token_record_public_key:
         pass
-    elif verifier == public_key_to_address(str(token_record_public_key)):
+    elif verifier == public_key_to_address(token_record_public_key):
         pass
     else:
         raise ValueError("Token public key doesn't match")
