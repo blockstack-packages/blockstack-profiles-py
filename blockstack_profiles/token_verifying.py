@@ -16,7 +16,7 @@ def verify_token_record(token_record, verifier,
         raise ValueError("Invalid token record")
 
     token = token_record["token"]
-    token_record_public_key = token_record["publicKey"]
+    token_record_public_key = str(token_record["publicKey"])
 
     if verifier == token_record_public_key:
         pass
@@ -52,23 +52,25 @@ def verify_token_record(token_record, verifier,
     return decoded_token
 
 
-def get_profile_from_tokens(token_records, public_key,
+def get_profile_from_tokens(token_records, public_key_or_address,
                             hierarchical_keys=False):
     """ A function for extracting a profile from a list of tokens.
     """
     
-    if hierarchical_keys == True:
-        raise Exception("Hierarchical key ")
+    if hierarchical_keys:
+        raise NotImplementedError("Hierarchical key support not implemented")
 
     profile = {}
 
     for token_record in token_records:
         try:
-            decoded_token = verify_token_record(token_record, public_key)
+            decoded_token = verify_token_record(token_record, public_key_or_address)
         except ValueError:
             continue
         else:
-            claim = decoded_token["payload"]["claim"]
-            profile.update(claim)
+            if "payload" in decoded_token:
+                if "claim" in decoded_token["payload"]:
+                    claim = decoded_token["payload"]["claim"]
+                    profile.update(claim)
 
     return profile
