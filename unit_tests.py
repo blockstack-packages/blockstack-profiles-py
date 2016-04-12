@@ -4,10 +4,15 @@ import unittest
 from test import test_support
 from keylib import ECPrivateKey, ECPublicKey
 from blockstack_profiles import (
-    sign_token_record, sign_token_records, verify_token_record,
+    sign_token_record,
+    sign_token_records,
+    verify_token_record,
     get_profile_from_tokens,
     make_zone_file_for_hosted_data,
-    get_person_from_legacy_format 
+    get_person_from_legacy_format,
+    get_token_file_url_from_zone_file,
+    zone_file_has_a_valid_uri_record,
+    resolve_zone_file_to_profile
 )
 from test_data import reference_profiles
 
@@ -55,7 +60,9 @@ class TokeningTests(unittest.TestCase):
 
 class ZonefileTests(unittest.TestCase):
     def setUp(self):
-        pass
+        self.zone_file = """$ORIGIN naval.id
+$TTL 3600
+@ URI 10 1 \"https://mq9.s3.amazonaws.com/naval.id/profile.json\""""
 
     def tearDown(self):
         pass
@@ -70,6 +77,23 @@ class ZonefileTests(unittest.TestCase):
         self.assertTrue("$TTL" in zone_file)
         self.assertTrue("@ URI" in zone_file)
 
+    def test_token_file_url_recovery_from_zone_file(self):
+        token_file_url = get_token_file_url_from_zone_file(self.zone_file)
+        self.assertEqual(token_file_url, "https://mq9.s3.amazonaws.com/naval.id/profile.json")
+
+    def test_zone_file_has_a_valid_uri_record(self):
+        is_valid = zone_file_has_a_valid_uri_record(self.zone_file)
+        self.assertTrue(is_valid)
+
+    def test_resolve_zone_file_to_profile(self):
+        zone_file = """$ORIGIN naval.id
+$TTL 3600
+@ URI 10 1 \"https://blockstack-data.s3.amazonaws.com/ryan_mar23_5.id\""""
+        public_key = "02d6b35de815093cbafea2ed55c9790bd3f7504223a14e488788312dcad846e1fe"
+        profile = resolve_zone_file_to_profile(zone_file, public_key)
+        self.assertTrue("name" in profile)
+        self.assertTrue("description" in profile)
+
 
 class LegacyFormatTests(unittest.TestCase):
     def setUp(self):
@@ -80,11 +104,6 @@ class LegacyFormatTests(unittest.TestCase):
 
     def test_profile_format_migration(self):
         zone_file = get_person_from_legacy_format(reference_profiles["jude"])
-        # print json.dumps(zone_file, indent=2, sort_keys=True)
-        self.assertTrue(isinstance(zone_file, dict))
-
-    def test_profile_format_migration_2(self):
-        zone_file = get_person_from_legacy_format(reference_profiles["muneeb"])
         # print json.dumps(zone_file, indent=2, sort_keys=True)
         self.assertTrue(isinstance(zone_file, dict))
 
