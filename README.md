@@ -17,7 +17,7 @@ If you have any trouble with the installation, see [the troubleshooting guide](/
 ### Importing
 
 ```python
-from blockstack_profiles import sign_token_records, validate_token_record, get_profile_from_tokens, make_zone_file_for_hosted_data
+from blockstack_profiles import sign_token_records, verify_token_record, get_profile_from_tokens, make_zone_file_for_hosted_data
 ```
 
 ### Creating Profiles
