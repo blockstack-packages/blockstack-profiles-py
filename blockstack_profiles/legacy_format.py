@@ -105,6 +105,11 @@ def get_person_from_legacy_format(profile_record):
 
     profile = profile_record
 
+    try:
+        profile = json.loads(json.dumps(profile))
+    except ValueError:
+        pass
+
     images = []
     accounts = []
     profile_data = {
