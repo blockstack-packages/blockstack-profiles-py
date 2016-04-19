@@ -62,7 +62,7 @@ class ZonefileTests(unittest.TestCase):
     def setUp(self):
         self.zone_file = """$ORIGIN naval.id
 $TTL 3600
-@ URI 10 1 \"https://mq9.s3.amazonaws.com/naval.id/profile.json\""""
+_http._tcp URI 10 1 \"https://mq9.s3.amazonaws.com/naval.id/profile.json\""""
 
     def tearDown(self):
         pass
@@ -71,11 +71,11 @@ $TTL 3600
         origin = "naval.id"
         token_file_url = "https://mq9.s3.amazonaws.com/naval.id/profile.json"
         zone_file = make_zone_file_for_hosted_data(origin, token_file_url)
-        #print zone_file
+        # print zone_file
         self.assertTrue(isinstance(zone_file, (unicode, str)))
         self.assertTrue("$ORIGIN" in zone_file)
         self.assertTrue("$TTL" in zone_file)
-        self.assertTrue("@ URI" in zone_file)
+        self.assertTrue("_http._tcp URI" in zone_file)
 
     def test_token_file_url_recovery_from_zone_file(self):
         token_file_url = get_token_file_url_from_zone_file(self.zone_file)
@@ -88,7 +88,7 @@ $TTL 3600
     def test_resolve_zone_file_to_profile(self):
         zone_file = """$ORIGIN naval.id
 $TTL 3600
-@ URI 10 1 \"https://blockstack-data.s3.amazonaws.com/ryan_mar23_5.id\""""
+_http._tcp URI 10 1 \"https://blockstack-data.s3.amazonaws.com/ryan_mar23_5.id\""""
         public_key = "02d6b35de815093cbafea2ed55c9790bd3f7504223a14e488788312dcad846e1fe"
         profile = resolve_zone_file_to_profile(zone_file, public_key)
         self.assertTrue("name" in profile)

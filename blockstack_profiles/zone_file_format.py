@@ -13,7 +13,7 @@ def make_zone_file_for_hosted_data(origin, token_file_url, ttl=3600):
         "$ttl": ttl,
         "$origin": origin,
         "uri": [{
-            "name": "@",
+            "name": "_http._tcp",
             "priority": 10,
             "weight": 1,
             "target": token_file_url
