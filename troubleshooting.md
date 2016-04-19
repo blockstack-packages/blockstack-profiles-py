@@ -1,45 +1,38 @@
-# Troubleshooting
+# Installation Troubleshooting Guide
 
-### Installation
+#### Errors Installing the "cffi" Package
 
-#### Error installing the cffi package
-
-If you see the following error, while *cffi* installs on OS X...
+If you see the error shown below on OS X, then there was an issue installing the `cffi` package.
 
 ```bash
 c/_cffi_backend.c:15:10: fatal error: 'ffi.h' file not found
     #include <ffi.h>
 ```
 
-...try installing *libffi* via brew:
+To fix this, try installing *libffi* via brew:
 
 ```bash
 $ brew install libffi
 ```
 
-#### Error installing the cryptography package
+#### Errors Installing the "cryptography" Package
 
-If you see the following error, while *cryptography* installs on OS X...
+If you see the error shown below on OS X, then there was an issue installing the `cryptography` package.
 
 ```bash
 build/temp.macosx-10.10-x86_64-2.7/_openssl.c:423:10: fatal error: 'openssl/e_os2.h' file not found
     #include <openssl/e_os2.h>
 ```
 
-1. Try upgrading Xcode Command Line Tools: 
+To fix this issue, try upgrading Xcode Command Line Tools: 
 
 ```bash
 $ xcode-select --install
 ```
 
-2. Make sure that openssl is installed:
+Then, make sure that openssl is installed and re-link it:
 
 ```bash
 $ brew install openssl
-```
-
-3. Re-link opensssl:
-
-```bash
 $ brew link openssl --force
 ```
