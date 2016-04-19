@@ -113,3 +113,39 @@ $ORIGIN naval.id
 $TTL 3600
 @ IN URI "https://mq9.s3.amazonaws.com/naval.id/profile.json"
 ```
+
+### Troubleshooting Installation 
+
+**a) Error installing the cffi package**
+
+If you see the following error, while *cffi* installs on OS X:
+```
+c/_cffi_backend.c:15:10: fatal error: 'ffi.h' file not found
+    #include <ffi.h>
+```
+
+Try installing *libffi* via brew:
+```
+$ brew install libffi
+```
+
+**b) Error installing cryptography package**
+
+If you see the following error, while *cryptography* installs on OS X:
+```
+build/temp.macosx-10.10-x86_64-2.7/_openssl.c:423:10: fatal error: 'openssl/e_os2.h' file not found
+    #include <openssl/e_os2.h>
+```
+
+Try upgrading Xcode Command Line Tools: 
+```
+$ xcode-select --install
+```
+Make sure that openssl is installed:
+```
+$ brew install openssl
+```
+And re-link opensssl:
+```
+$ brew link openssl --force
+```
