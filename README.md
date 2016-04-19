@@ -12,6 +12,8 @@
 $ pip install blockstack-profiles
 ```
 
+If you have any trouble with the installation, see [the troubleshooting guide](/troubleshooting.md) for guidance on common issues.
+
 ### Importing
 
 ```python
