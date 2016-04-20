@@ -47,19 +47,20 @@ def verify_token_record(token_record, public_key_or_address,
     """ A function for validating an individual token record and extracting
         the decoded token.
     """
-    if not ("token" in token_record and "publicKey" in token_record and \
-            "parentPublicKey" in token_record):
-        raise ValueError("Invalid token record")
+    if "token" not in token_record:
+        raise ValueError("Token record must have a token inside it")
+    if "parentPublicKey" not in token_record:
+        raise ValueError("Token record must have a parent public key inside it")
 
     token = token_record["token"]
 
     decoded_token = verify_token(
         token, public_key_or_address, signing_algorithm=signing_algorithm)
     token_payload = decoded_token["payload"]
+    issuer_public_key = token_payload["issuer"]["publicKey"]
 
-    if token_record["publicKey"] == token_record["parentPublicKey"]:
-        if token_record["publicKey"] != token_payload["issuer"]["publicKey"]:
-            raise ValueError("Token's public key doesn't match")
+    if issuer_public_key == token_record["parentPublicKey"]:
+        pass
     else:
         raise ValueError(
             "Verification of tokens signed with keychains is not yet supported")

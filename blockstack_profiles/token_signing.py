@@ -63,7 +63,6 @@ def sign_token_records(profile_components, parent_private_key,
         token = sign_token(profile_component, private_key.to_hex(), subject,
                            signing_algorithm=signing_algorithm)
         token_record = wrap_token(token)
-        token_record["publicKey"] = public_key.to_hex()
         token_record["parentPublicKey"] = public_key.to_hex()
         token_records.append(token_record)
 

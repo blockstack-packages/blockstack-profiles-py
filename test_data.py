@@ -193,75 +193,45 @@ reference_profiles = {
     ],
     "ryan_token_file": [
       {
-        "token": "eyJhbGciOiJFUzI1NksiLCJ0eXAiOiJKV1QifQ.eyJleHBpcmVzQXQiOiIyMDE3LTA0LTE5VDE2OjQzOjExLjQwMjU0NiIsImNsYWltIjp7ImRlc2NyaXB0aW9uIjoiQ28tZm91bmRlciBvZiBCbG9ja3N0YWNrIExhYnMiLCJuYW1lIjoiUnlhbiBTaGVhIiwiYWNjb3VudHMiOltdLCJ3ZWJzaXRlIjpbeyJ1cmwiOiJodHRwOi8vc2hlYS5pbyIsIkB0eXBlIjoiV2ViU2l0ZSJ9XSwiYWRkcmVzcyI6eyJhZGRyZXNzTG9jYWxpdHkiOiJOZXcgWW9yayIsIkB0eXBlIjoiUG9zdGFsQWRkcmVzcyJ9LCJAdHlwZSI6IlBlcnNvbiIsImltYWdlIjpbeyJjb250ZW50VXJsIjoiaHR0cHM6Ly9zMy5hbWF6b25hd3MuY29tL2tkNC9yeWFuX2FwcjEzXzEyIiwiQHR5cGUiOiJJbWFnZU9iamVjdCIsIm5hbWUiOiJhdmF0YXIifSx7ImNvbnRlbnRVcmwiOiJodHRwczovL3MzLmFtYXpvbmF3cy5jb20vZHgzL3J5YW5fYXByMTNfMTIiLCJAdHlwZSI6IkltYWdlT2JqZWN0IiwibmFtZSI6ImNvdmVyIn1dLCJhY2NvdW50IjpbeyJpZGVudGlmaWVyIjoicnlhbmVzaGVhIiwiQHR5cGUiOiJBY2NvdW50IiwicHJvb2ZVcmwiOiJodHRwczovL3R3aXR0ZXIuY29tL3J5YW5lc2hlYS9zdGF0dXMvNzIwMjg3MzIzMzA5NTEwNjU4Iiwic2VydmljZSI6InR3aXR0ZXIifSx7ImlkZW50aWZpZXIiOiJzaGVhMjU2IiwiQHR5cGUiOiJBY2NvdW50IiwicHJvb2ZVcmwiOiJodHRwczovL2dpc3QuZ2l0aHViLmNvbS9zaGVhMjU2LzU4ZGZmMzBhYzlmMGI1Yjk0NmM0OGYyN2NkMGZiNDRjIiwic2VydmljZSI6ImdpdGh1YiJ9LHsiaWRlbnRpZmllciI6InJ5YW5lc2hlYSIsIkB0eXBlIjoiQWNjb3VudCIsInByb29mVXJsIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL3J5YW5lc2hlYS9wb3N0cy8xMDE1Mzg0OTA3NTQ0NzcxMyIsInNlcnZpY2UiOiJmYWNlYm9vayJ9XX0sImlzc3VlZEF0IjoiMjAxNi0wNC0xOVQxNjo0MzoxMS40MDI1NDYiLCJzdWJqZWN0Ijp7InB1YmxpY0tleSI6IjAzZjkzZmViZTkyNDYxZTFkMzEwM2I5NmQyNWFlZjVkZjNiZTlkODE2MWRmMDY1NWE1NWMwNjU5ZDQ5MDA2Y2E3NSJ9fQ.ORooDsoSOpkEQ_ZFYGtSlVx50BbAVgLr1QKMUHopglhwL0yJUdfOAcQhN1TImtHKjcjJAZzI5uKYq2Wh3zsaBg", 
         "decodedToken": {
           "header": {
             "alg": "ES256K", 
             "typ": "JWT"
           }, 
-          "signature": "ORooDsoSOpkEQ_ZFYGtSlVx50BbAVgLr1QKMUHopglhwL0yJUdfOAcQhN1TImtHKjcjJAZzI5uKYq2Wh3zsaBg", 
           "payload": {
-            "expiresAt": "2017-04-19T16:43:11.402546", 
+            "issuedAt": "2016-04-20T12:25:14.453734", 
             "claim": {
-              "description": "Co-founder of Blockstack Labs", 
-              "name": "Ryan Shea", 
+              "account": [], 
               "accounts": [], 
-              "website": [
-                {
-                  "url": "http://shea.io", 
-                  "@type": "WebSite"
-                }
-              ], 
-              "address": {
-                "addressLocality": "New York", 
-                "@type": "PostalAddress"
-              }, 
               "@type": "Person", 
-              "account": [
-                {
-                  "identifier": "ryaneshea", 
-                  "proofUrl": "https://twitter.com/ryaneshea/status/720287323309510658", 
-                  "@type": "Account", 
-                  "service": "twitter"
-                }, 
-                {
-                  "identifier": "shea256", 
-                  "proofUrl": "https://gist.github.com/shea256/58dff30ac9f0b5b946c48f27cd0fb44c", 
-                  "@type": "Account", 
-                  "service": "github"
-                }, 
-                {
-                  "identifier": "ryaneshea", 
-                  "proofUrl": "https://www.facebook.com/ryaneshea/posts/10153849075447713", 
-                  "@type": "Account", 
-                  "service": "facebook"
-                }
-              ], 
               "image": [
                 {
-                  "contentUrl": "https://s3.amazonaws.com/kd4/ryan_apr13_12", 
-                  "name": "avatar", 
-                  "@type": "ImageObject"
+                  "contentUrl": "https://s3.amazonaws.com/97p/rv1.jpeg", 
+                  "@type": "ImageObject", 
+                  "name": "cover"
                 }, 
                 {
-                  "contentUrl": "https://s3.amazonaws.com/dx3/ryan_apr13_12", 
-                  "name": "cover", 
-                  "@type": "ImageObject"
+                  "contentUrl": "https://s3.amazonaws.com/kd4/ryan_apr20", 
+                  "@type": "ImageObject", 
+                  "name": "avatar"
                 }
-              ]
+              ], 
+              "name": "Ryan Shea"
             }, 
-            "issuedAt": "2016-04-19T16:43:11.402546", 
+            "expiresAt": "2017-04-20T12:25:14.453734", 
             "subject": {
-              "publicKey": "03f93febe92461e1d3103b96d25aef5df3be9d8161df0655a55c0659d49006ca75"
-            },
+              "publicKey": "02413d7c51118104cfe1b41e540b6c2acaaf91f1e2e22316df7448fb6070d582ec"
+            }, 
             "issuer": {
-              "publicKey": "03f93febe92461e1d3103b96d25aef5df3be9d8161df0655a55c0659d49006ca75"
+              "publicKey": "02413d7c51118104cfe1b41e540b6c2acaaf91f1e2e22316df7448fb6070d582ec"
             }
-          }
+          }, 
+          "signature": "Xj3z975ccW6oxbrlm_YsdGNreuzERRxPoj0DyyJ9vygMYfUjsTQGcxsejmkSPYafTFd6TNIbNBTquutOKZvmBA"
         }, 
-        "parentPublicKey": "03f93febe92461e1d3103b96d25aef5df3be9d8161df0655a55c0659d49006ca75", 
-        "encrypted": False, 
-        "publicKey": "03f93febe92461e1d3103b96d25aef5df3be9d8161df0655a55c0659d49006ca75"
+        "token": "eyJhbGciOiJFUzI1NksiLCJ0eXAiOiJKV1QifQ.eyJpc3N1ZWRBdCI6IjIwMTYtMDQtMjBUMTI6MjU6MTQuNDUzNzM0IiwiY2xhaW0iOnsiYWNjb3VudCI6W10sImFjY291bnRzIjpbXSwiQHR5cGUiOiJQZXJzb24iLCJpbWFnZSI6W3siY29udGVudFVybCI6Imh0dHBzOi8vczMuYW1hem9uYXdzLmNvbS85N3AvcnYxLmpwZWciLCJAdHlwZSI6IkltYWdlT2JqZWN0IiwibmFtZSI6ImNvdmVyIn0seyJjb250ZW50VXJsIjoiaHR0cHM6Ly9zMy5hbWF6b25hd3MuY29tL2tkNC9yeWFuX2FwcjIwIiwiQHR5cGUiOiJJbWFnZU9iamVjdCIsIm5hbWUiOiJhdmF0YXIifV0sIm5hbWUiOiJSeWFuIFNoZWEifSwiZXhwaXJlc0F0IjoiMjAxNy0wNC0yMFQxMjoyNToxNC40NTM3MzQiLCJpc3N1ZXIiOnsicHVibGljS2V5IjoiMDI0MTNkN2M1MTExODEwNGNmZTFiNDFlNTQwYjZjMmFjYWFmOTFmMWUyZTIyMzE2ZGY3NDQ4ZmI2MDcwZDU4MmVjIn0sInN1YmplY3QiOnsicHVibGljS2V5IjoiMDI0MTNkN2M1MTExODEwNGNmZTFiNDFlNTQwYjZjMmFjYWFmOTFmMWUyZTIyMzE2ZGY3NDQ4ZmI2MDcwZDU4MmVjIn19.Xj3z975ccW6oxbrlm_YsdGNreuzERRxPoj0DyyJ9vygMYfUjsTQGcxsejmkSPYafTFd6TNIbNBTquutOKZvmBA", 
+        "parentPublicKey": "02413d7c51118104cfe1b41e540b6c2acaaf91f1e2e22316df7448fb6070d582ec", 
+        "publicKey": "02413d7c51118104cfe1b41e540b6c2acaaf91f1e2e22316df7448fb6070d582ec", 
+        "encrypted": False
       }
     ]
 }

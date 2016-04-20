@@ -67,10 +67,10 @@ class ZonefileTests(unittest.TestCase):
         self.zone_file = """$ORIGIN naval.id
 $TTL 3600
 _http._tcp URI 10 1 \"https://mq9.s3.amazonaws.com/naval.id/profile.json\""""
-        self.zone_file_2 = """$ORIGIN ryan_mar23_5.id
+        self.zone_file_2 = """$ORIGIN ryan_apr20.id
 $TTL 3600
-_http._tcp URI 10 1 \"https://blockstack-data.s3.amazonaws.com/ryan_mar23_5.id\""""
-        self.public_key_2 = "02d6b35de815093cbafea2ed55c9790bd3f7504223a14e488788312dcad846e1fe"
+_http._tcp URI 10 1 \"https://blockstack.s3.amazonaws.com/ryan_apr20.id\""""
+        self.public_key_2 = "02413d7c51118104cfe1b41e540b6c2acaaf91f1e2e22316df7448fb6070d582ec"
 
     def tearDown(self):
         pass
@@ -93,12 +93,9 @@ _http._tcp URI 10 1 \"https://blockstack-data.s3.amazonaws.com/ryan_mar23_5.id\"
         is_valid = zone_file_has_a_valid_uri_record(self.zone_file)
         self.assertTrue(is_valid)
 
-    """
     def test_resolve_zone_file_to_profile(self):
         profile = resolve_zone_file_to_profile(self.zone_file_2, self.public_key_2)
         self.assertTrue("name" in profile)
-        self.assertTrue("description" in profile)
-    """
 
 
 class LegacyFormatTests(unittest.TestCase):
