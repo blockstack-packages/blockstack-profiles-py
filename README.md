@@ -17,7 +17,12 @@ If you have any trouble with the installation, see [the troubleshooting guide](/
 ### Importing
 
 ```python
-from blockstack_profiles import sign_token_records, validate_token_record, get_profile_from_tokens, make_zone_file_for_hosted_data
+from blockstack_profiles import (
+  sign_token, wrap_token, sign_token_records,
+  validate_token_record, get_profile_from_tokens,
+  make_zone_file_for_hosted_data,
+  resolve_zone_file_to_profile
+)
 ```
 
 ### Creating Profiles
@@ -34,44 +39,6 @@ profile_components = [
 
 ```python
 token_records = sign_token_records(profile_components, "89088e4779c49c8c3210caae38df06193359417036d87d3cc8888dcfe579905701")
-```
-
-```python
->>> print token_records
-[
-  {
-    "decoded_token": {
-      "issuedAt": "2016-03-02T18:59:29.043308", 
-      "claim": {
-        "name": "Naval Ravikant"
-      }, 
-      "expiresAt": "2017-03-02T18:59:29.043308", 
-      "subject": {
-        "publicKey": "02f1fd79dcd51bd017f71546ddc0fd3c8fb7de673da8661c4ceec0463dc991cc7e"
-      }
-    }, 
-    "token": "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3N1ZWRBdCI6IjIwMTYtMDMtMDJUMTg6NTk6MjkuMDQzMzA4IiwiY2xhaW0iOnsibmFtZSI6Ik5hdmFsIFJhdmlrYW50In0sImV4cGlyZXNBdCI6IjIwMTctMDMtMDJUMTg6NTk6MjkuMDQzMzA4Iiwic3ViamVjdCI6eyJwdWJsaWNLZXkiOiIwM2U5OTUzY2IxODRiMGMyNTNlMWM1YTk2ZGY0Y2I5OTMzYmY4OWVkMmRmNWJkNzliMDJmNzFjY2ZlNWVjNTAyNjgifX0.0qQbEXTsDSbswL2qfMVzMuYU503ddfclXz3ict1rh85arXX47DW51814n1OFOAzjGoeDvsQXpfG3hB2dMHuIEw", 
-    "parentPublicKey": "02f1fd79dcd51bd017f71546ddc0fd3c8fb7de673da8661c4ceec0463dc991cc7e", 
-    "encrypted": false, 
-    "publicKey": "02f1fd79dcd51bd017f71546ddc0fd3c8fb7de673da8661c4ceec0463dc991cc7e"
-  }, 
-  {
-    "decoded_token": {
-      "issuedAt": "2016-03-02T18:59:29.043308", 
-      "claim": {
-        "birthDate": "1980-01-01"
-      }, 
-      "expiresAt": "2017-03-02T18:59:29.043308", 
-      "subject": {
-        "publicKey": "02f1fd79dcd51bd017f71546ddc0fd3c8fb7de673da8661c4ceec0463dc991cc7e"
-      }
-    }, 
-    "token": "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3N1ZWRBdCI6IjIwMTYtMDMtMDJUMTg6NTk6MjkuMDQzMzA4IiwiY2xhaW0iOnsiYmlydGhEYXRlIjoiMTk4MC0wMS0wMSJ9LCJleHBpcmVzQXQiOiIyMDE3LTAzLTAyVDE4OjU5OjI5LjA0MzMwOCIsInN1YmplY3QiOnsicHVibGljS2V5IjoiMDNlOTk1M2NiMTg0YjBjMjUzZTFjNWE5NmRmNGNiOTkzM2JmODllZDJkZjViZDc5YjAyZjcxY2NmZTVlYzUwMjY4In19.m-v3mrPtXaNSltBvWfOLnpPerIxJhQQOt0-x-Lyw1A-iGp_dq8TPLrYGqo4UfcBfqva52-N5eSCN6c1pKgSLDQ", 
-    "parentPublicKey": "02f1fd79dcd51bd017f71546ddc0fd3c8fb7de673da8661c4ceec0463dc991cc7e", 
-    "encrypted": false, 
-    "publicKey": "02f1fd79dcd51bd017f71546ddc0fd3c8fb7de673da8661c4ceec0463dc991cc7e"
-  }
-]
 ```
 
 ### Verifying Token Records
@@ -114,4 +81,10 @@ zone_file = make_zone_file_for_hosted_data("naval.id", "https://mq9.s3.amazonaws
 $ORIGIN naval.id
 $TTL 3600
 @ IN URI "https://mq9.s3.amazonaws.com/naval.id/profile.json"
+```
+
+### Resolving Zone Files to Profiles
+
+```python
+profile = resolve_zone_file_to_profile(zone_file)
 ```

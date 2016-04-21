@@ -136,5 +136,102 @@ reference_profiles = {
         },
         "v": "0.2",
         "website": "http://muneebali.com"
-    }
+    },
+    "naval_token_file": [
+      {
+        "decodedToken": {
+          "header": {
+            "alg": "ES256K", 
+            "typ": "JWT"
+          }, 
+          "payload": {
+            "issuedAt": "2016-04-20T12:11:17.632971", 
+            "claim": {
+              "name": "Naval Ravikant"
+            }, 
+            "expiresAt": "2017-04-20T12:11:17.632971", 
+            "subject": {
+              "publicKey": "038354d097be9004f63a6409e2c7a05467b1950120b4c5f840f99832dad743ac1e"
+            }, 
+            "issuer": {
+              "publicKey": "038354d097be9004f63a6409e2c7a05467b1950120b4c5f840f99832dad743ac1e"
+            }
+          }, 
+          "signature": "sqVdB1J95oNWD2AySg3vnuO4NFTgsmLh-kPlIX-3hVYF8kl7TQnE1jKi3hEfEXrptT1vGI591JhaGB_trWtwWg"
+        }, 
+        "token": "eyJhbGciOiJFUzI1NksiLCJ0eXAiOiJKV1QifQ.eyJpc3N1ZWRBdCI6IjIwMTYtMDQtMjBUMTI6MTE6MTcuNjMyOTcxIiwiY2xhaW0iOnsibmFtZSI6Ik5hdmFsIFJhdmlrYW50In0sImV4cGlyZXNBdCI6IjIwMTctMDQtMjBUMTI6MTE6MTcuNjMyOTcxIiwiaXNzdWVyIjp7InB1YmxpY0tleSI6IjAzODM1NGQwOTdiZTkwMDRmNjNhNjQwOWUyYzdhMDU0NjdiMTk1MDEyMGI0YzVmODQwZjk5ODMyZGFkNzQzYWMxZSJ9LCJzdWJqZWN0Ijp7InB1YmxpY0tleSI6IjAzODM1NGQwOTdiZTkwMDRmNjNhNjQwOWUyYzdhMDU0NjdiMTk1MDEyMGI0YzVmODQwZjk5ODMyZGFkNzQzYWMxZSJ9fQ.sqVdB1J95oNWD2AySg3vnuO4NFTgsmLh-kPlIX-3hVYF8kl7TQnE1jKi3hEfEXrptT1vGI591JhaGB_trWtwWg", 
+        "parentPublicKey": "038354d097be9004f63a6409e2c7a05467b1950120b4c5f840f99832dad743ac1e", 
+        "publicKey": "038354d097be9004f63a6409e2c7a05467b1950120b4c5f840f99832dad743ac1e", 
+        "encrypted": False
+      }, 
+      {
+        "decodedToken": {
+          "header": {
+            "alg": "ES256K", 
+            "typ": "JWT"
+          }, 
+          "payload": {
+            "issuedAt": "2016-04-20T12:11:17.930564", 
+            "claim": {
+              "birthDate": "1980-01-01"
+            }, 
+            "expiresAt": "2017-04-20T12:11:17.930564", 
+            "subject": {
+              "publicKey": "038354d097be9004f63a6409e2c7a05467b1950120b4c5f840f99832dad743ac1e"
+            }, 
+            "issuer": {
+              "publicKey": "038354d097be9004f63a6409e2c7a05467b1950120b4c5f840f99832dad743ac1e"
+            }
+          }, 
+          "signature": "bxzot7eLwl2Pa8PAlpDBBMnMBqp2quiu5m2ljUYWPaWAGFAeTwvWeAypV1Dj4H1UneVQOyXZDj44-1rhtm-hfQ"
+        }, 
+        "token": "eyJhbGciOiJFUzI1NksiLCJ0eXAiOiJKV1QifQ.eyJpc3N1ZWRBdCI6IjIwMTYtMDQtMjBUMTI6MTE6MTcuOTMwNTY0IiwiY2xhaW0iOnsiYmlydGhEYXRlIjoiMTk4MC0wMS0wMSJ9LCJleHBpcmVzQXQiOiIyMDE3LTA0LTIwVDEyOjExOjE3LjkzMDU2NCIsImlzc3VlciI6eyJwdWJsaWNLZXkiOiIwMzgzNTRkMDk3YmU5MDA0ZjYzYTY0MDllMmM3YTA1NDY3YjE5NTAxMjBiNGM1Zjg0MGY5OTgzMmRhZDc0M2FjMWUifSwic3ViamVjdCI6eyJwdWJsaWNLZXkiOiIwMzgzNTRkMDk3YmU5MDA0ZjYzYTY0MDllMmM3YTA1NDY3YjE5NTAxMjBiNGM1Zjg0MGY5OTgzMmRhZDc0M2FjMWUifX0.bxzot7eLwl2Pa8PAlpDBBMnMBqp2quiu5m2ljUYWPaWAGFAeTwvWeAypV1Dj4H1UneVQOyXZDj44-1rhtm-hfQ", 
+        "parentPublicKey": "038354d097be9004f63a6409e2c7a05467b1950120b4c5f840f99832dad743ac1e", 
+        "publicKey": "038354d097be9004f63a6409e2c7a05467b1950120b4c5f840f99832dad743ac1e", 
+        "encrypted": False
+      }
+    ],
+    "ryan_apr20_token_file": [
+      {
+        "decodedToken": {
+          "header": {
+            "alg": "ES256K", 
+            "typ": "JWT"
+          }, 
+          "payload": {
+            "issuedAt": "2016-04-20T12:25:14.453734", 
+            "claim": {
+              "account": [], 
+              "accounts": [], 
+              "@type": "Person", 
+              "image": [
+                {
+                  "contentUrl": "https://s3.amazonaws.com/97p/rv1.jpeg", 
+                  "@type": "ImageObject", 
+                  "name": "cover"
+                }, 
+                {
+                  "contentUrl": "https://s3.amazonaws.com/kd4/ryan_apr20", 
+                  "@type": "ImageObject", 
+                  "name": "avatar"
+                }
+              ], 
+              "name": "Ryan Shea"
+            }, 
+            "expiresAt": "2017-04-20T12:25:14.453734", 
+            "subject": {
+              "publicKey": "02413d7c51118104cfe1b41e540b6c2acaaf91f1e2e22316df7448fb6070d582ec"
+            }, 
+            "issuer": {
+              "publicKey": "02413d7c51118104cfe1b41e540b6c2acaaf91f1e2e22316df7448fb6070d582ec"
+            }
+          }, 
+          "signature": "Xj3z975ccW6oxbrlm_YsdGNreuzERRxPoj0DyyJ9vygMYfUjsTQGcxsejmkSPYafTFd6TNIbNBTquutOKZvmBA"
+        }, 
+        "token": "eyJhbGciOiJFUzI1NksiLCJ0eXAiOiJKV1QifQ.eyJpc3N1ZWRBdCI6IjIwMTYtMDQtMjBUMTI6MjU6MTQuNDUzNzM0IiwiY2xhaW0iOnsiYWNjb3VudCI6W10sImFjY291bnRzIjpbXSwiQHR5cGUiOiJQZXJzb24iLCJpbWFnZSI6W3siY29udGVudFVybCI6Imh0dHBzOi8vczMuYW1hem9uYXdzLmNvbS85N3AvcnYxLmpwZWciLCJAdHlwZSI6IkltYWdlT2JqZWN0IiwibmFtZSI6ImNvdmVyIn0seyJjb250ZW50VXJsIjoiaHR0cHM6Ly9zMy5hbWF6b25hd3MuY29tL2tkNC9yeWFuX2FwcjIwIiwiQHR5cGUiOiJJbWFnZU9iamVjdCIsIm5hbWUiOiJhdmF0YXIifV0sIm5hbWUiOiJSeWFuIFNoZWEifSwiZXhwaXJlc0F0IjoiMjAxNy0wNC0yMFQxMjoyNToxNC40NTM3MzQiLCJpc3N1ZXIiOnsicHVibGljS2V5IjoiMDI0MTNkN2M1MTExODEwNGNmZTFiNDFlNTQwYjZjMmFjYWFmOTFmMWUyZTIyMzE2ZGY3NDQ4ZmI2MDcwZDU4MmVjIn0sInN1YmplY3QiOnsicHVibGljS2V5IjoiMDI0MTNkN2M1MTExODEwNGNmZTFiNDFlNTQwYjZjMmFjYWFmOTFmMWUyZTIyMzE2ZGY3NDQ4ZmI2MDcwZDU4MmVjIn19.Xj3z975ccW6oxbrlm_YsdGNreuzERRxPoj0DyyJ9vygMYfUjsTQGcxsejmkSPYafTFd6TNIbNBTquutOKZvmBA", 
+        "parentPublicKey": "02413d7c51118104cfe1b41e540b6c2acaaf91f1e2e22316df7448fb6070d582ec", 
+        "publicKey": "02413d7c51118104cfe1b41e540b6c2acaaf91f1e2e22316df7448fb6070d582ec", 
+        "encrypted": False
+      }
+    ]
 }

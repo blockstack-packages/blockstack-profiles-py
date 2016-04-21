@@ -1,50 +1,96 @@
 import json
 import ecdsa
 import datetime
-from keylib import ECPrivateKey, ECPublicKey, public_key_to_address
+import traceback
+from keylib import (
+    ECPrivateKey, ECPublicKey,
+    public_key_to_address
+)
+from keylib.hashing import bin_hash160
+from keylib.address_formatting import bin_hash160_to_address
+from keylib.key_formatting import compress, decompress
 from jsontokens import TokenSigner, TokenVerifier, decode_token
 
 
-def verify_token_record(token_record, verifier,
-                        signing_algorithm="ES256"):
-    """ A function for validating an individual token record and extracting
-        the decoded token.
+class PubkeyType():
+    ecdsa = 1
+    uncompressed = 2
+    compressed = 3
+
+
+def verify_token(token, public_key_or_address, signing_algorithm="ES256K"):
+    """ A function for validating an individual token.
     """
-
-    if not ("token" in token_record and "publicKey" in token_record and \
-            "parentPublicKey" in token_record):
-        raise ValueError("Invalid token record")
-
-    token = token_record["token"]
-    token_record_public_key = str(token_record["publicKey"])
-
-    if verifier == token_record_public_key:
-        pass
-    elif verifier == public_key_to_address(token_record_public_key):
-        pass
-    else:
-        raise ValueError("Token public key doesn't match")
-
-    public_key = ECPublicKey(token_record_public_key)
-
-    token_verifier = TokenVerifier()
-    token_is_valid = token_verifier.verify(token, public_key.to_pem())
-    if not token_is_valid:
-        raise ValueError("Token is not valid")
-
     decoded_token = decode_token(token)
     decoded_token_payload = decoded_token["payload"]
 
     if "subject" not in decoded_token_payload:
-        raise ValueError("Invalid decoded token")
+        raise ValueError("Token doesn't have a subject")
     if "publicKey" not in decoded_token_payload["subject"]:
-        raise ValueError("Invalid decoded token")
+        raise ValueError("Token doesn't have a subject public key")
+    if "issuer" not in decoded_token_payload:
+        raise ValueError("Token doesn't have an issuer")
+    if "publicKey" not in decoded_token_payload["issuer"]:
+        raise ValueError("Token doesn't have an issuer public key")
     if "claim" not in decoded_token_payload:
-        raise ValueError("Invalid decoded token")
+        raise ValueError("Token doesn't have a claim")
 
-    if token_record["publicKey"] == token_record["parentPublicKey"]:
-        if token_record["publicKey"] != decoded_token_payload["subject"]["publicKey"]:
-            raise ValueError("Token's public key doesn't match")
+    issuer_public_key = str(decoded_token_payload["issuer"]["publicKey"])
+    public_key_object = ECPublicKey(issuer_public_key)
+
+    if public_key_object._type == PubkeyType.compressed:
+        compressed_address = public_key_object.address()
+        uncompressed_address = bin_hash160_to_address(
+            bin_hash160(
+                decompress(public_key_object.to_bin())
+            )
+        )
+    elif public_key_object._type == PubkeyType.uncompressed:
+        compressed_address = bin_hash160_to_address(
+            bin_hash160(
+                compress(public_key_object.to_bin())
+            )
+        )
+        uncompressed_address = public_key_object.address()
+    else:
+        raise ValueError("Invalid issuer public key format")
+    
+    if public_key_or_address == issuer_public_key:
+        pass
+    elif public_key_or_address == compressed_address:
+        pass
+    elif public_key_or_address == uncompressed_address:
+        pass
+    else:
+        raise ValueError("Token public key doesn't match the verifying value")
+
+    token_verifier = TokenVerifier()
+
+    if not token_verifier.verify(token, public_key_object.to_pem()):
+        raise ValueError("Token was not signed by the issuer public key")
+
+    return decoded_token
+
+
+def verify_token_record(token_record, public_key_or_address,
+                        signing_algorithm="ES256K"):
+    """ A function for validating an individual token record and extracting
+        the decoded token.
+    """
+    if "token" not in token_record:
+        raise ValueError("Token record must have a token inside it")
+    if "parentPublicKey" not in token_record:
+        raise ValueError("Token record must have a parent public key inside it")
+
+    token = token_record["token"]
+
+    decoded_token = verify_token(
+        token, public_key_or_address, signing_algorithm=signing_algorithm)
+    token_payload = decoded_token["payload"]
+    issuer_public_key = token_payload["issuer"]["publicKey"]
+
+    if issuer_public_key == token_record["parentPublicKey"]:
+        pass
     else:
         raise ValueError(
             "Verification of tokens signed with keychains is not yet supported")
@@ -63,9 +109,11 @@ def get_profile_from_tokens(token_records, public_key_or_address,
     profile = {}
 
     for token_record in token_records:
+        #print token_record
         try:
             decoded_token = verify_token_record(token_record, public_key_or_address)
         except ValueError:
+            traceback.print_exc()
             continue
         else:
             if "payload" in decoded_token:

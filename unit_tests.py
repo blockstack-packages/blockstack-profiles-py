@@ -4,10 +4,8 @@ import unittest
 from test import test_support
 from keylib import ECPrivateKey, ECPublicKey
 from blockstack_profiles import (
-    sign_token_record,
-    sign_token_records,
-    verify_token_record,
-    get_profile_from_tokens,
+    sign_token, wrap_token, sign_token_records,
+    verify_token, verify_token_record, get_profile_from_tokens,
     make_zone_file_for_hosted_data,
     get_person_from_legacy_format,
     get_token_file_url_from_zone_file,
@@ -15,6 +13,23 @@ from blockstack_profiles import (
     resolve_zone_file_to_profile
 )
 from test_data import reference_profiles
+
+
+class VerificationTests(unittest.TestCase):
+    def setUp(self):
+        pass
+
+    def tearDown(self):
+        pass
+
+    def test_token_file_verification_2(self):
+        token_records = reference_profiles["ryan_apr20_token_file"]
+        owner_address = "1BTku19roxQs2d54kbYKVTv21oBCuHEApF"
+        compressed_address = "12wes6TQpDF2j8zqvAbXV9KNCGQVF2y7G5"
+        profile = get_profile_from_tokens(token_records, owner_address)
+        self.assertEqual(profile["name"], "Ryan Shea")
+        profile = get_profile_from_tokens(token_records, compressed_address)
+        self.assertEqual(profile["name"], "Ryan Shea")
 
 
 class TokeningTests(unittest.TestCase):
@@ -32,7 +47,7 @@ class TokeningTests(unittest.TestCase):
         # tokenize the profile
         profile_token_records = sign_token_records(
             self.profile_components, self.master_private_key.to_hex())
-        # print json.dumps(profile_token_records, indent=2)
+        #print json.dumps(profile_token_records, indent=2)
         self.assertTrue(isinstance(profile_token_records, list))
         # verify the token records
         for token_record in profile_token_records:
@@ -57,12 +72,21 @@ class TokeningTests(unittest.TestCase):
             decoded_token = verify_token_record(token_record, address)
             self.assertTrue(isinstance(decoded_token, dict))
 
+    def test_token_file_verification(self):
+        token_records = reference_profiles["naval_token_file"]
+        public_key = "038354d097be9004f63a6409e2c7a05467b1950120b4c5f840f99832dad743ac1e"
+        profile = get_profile_from_tokens(token_records, public_key)
+
 
 class ZonefileTests(unittest.TestCase):
     def setUp(self):
         self.zone_file = """$ORIGIN naval.id
 $TTL 3600
 _http._tcp URI 10 1 \"https://mq9.s3.amazonaws.com/naval.id/profile.json\""""
+        self.zone_file_2 = """$ORIGIN ryan_apr20.id
+$TTL 3600
+_http._tcp URI 10 1 \"https://blockstack.s3.amazonaws.com/ryan_apr20.id\""""
+        self.public_key_2 = "02413d7c51118104cfe1b41e540b6c2acaaf91f1e2e22316df7448fb6070d582ec"
 
     def tearDown(self):
         pass
@@ -86,13 +110,8 @@ _http._tcp URI 10 1 \"https://mq9.s3.amazonaws.com/naval.id/profile.json\""""
         self.assertTrue(is_valid)
 
     def test_resolve_zone_file_to_profile(self):
-        zone_file = """$ORIGIN naval.id
-$TTL 3600
-_http._tcp URI 10 1 \"https://blockstack-data.s3.amazonaws.com/ryan_mar23_5.id\""""
-        public_key = "02d6b35de815093cbafea2ed55c9790bd3f7504223a14e488788312dcad846e1fe"
-        profile = resolve_zone_file_to_profile(zone_file, public_key)
+        profile = resolve_zone_file_to_profile(self.zone_file_2, self.public_key_2)
         self.assertTrue("name" in profile)
-        self.assertTrue("description" in profile)
 
 
 class LegacyFormatTests(unittest.TestCase):
@@ -110,6 +129,7 @@ class LegacyFormatTests(unittest.TestCase):
 
 def test_main():
     test_support.run_unittest(
+        VerificationTests,
         TokeningTests,
         ZonefileTests,
         LegacyFormatTests
