@@ -15,6 +15,23 @@ from blockstack_profiles import (
 from test_data import reference_profiles
 
 
+class VerificationTests(unittest.TestCase):
+    def setUp(self):
+        pass
+
+    def tearDown(self):
+        pass
+
+    def test_token_file_verification_2(self):
+        token_records = reference_profiles["ryan_apr20_token_file"]
+        owner_address = "1BTku19roxQs2d54kbYKVTv21oBCuHEApF"
+        compressed_address = "12wes6TQpDF2j8zqvAbXV9KNCGQVF2y7G5"
+        profile = get_profile_from_tokens(token_records, owner_address)
+        print profile
+        profile = get_profile_from_tokens(token_records, compressed_address)
+        print profile
+
+
 class TokeningTests(unittest.TestCase):
     def setUp(self):
         self.master_private_key = ECPrivateKey(compressed=True)
@@ -59,7 +76,6 @@ class TokeningTests(unittest.TestCase):
         token_records = reference_profiles["naval_token_file"]
         public_key = "038354d097be9004f63a6409e2c7a05467b1950120b4c5f840f99832dad743ac1e"
         profile = get_profile_from_tokens(token_records, public_key)
-        print profile
 
 
 class ZonefileTests(unittest.TestCase):
@@ -113,9 +129,10 @@ class LegacyFormatTests(unittest.TestCase):
 
 def test_main():
     test_support.run_unittest(
-        TokeningTests,
-        ZonefileTests,
-        LegacyFormatTests
+        VerificationTests,
+        #TokeningTests,
+        #ZonefileTests,
+        #LegacyFormatTests
     )
 
 

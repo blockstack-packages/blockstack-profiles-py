@@ -2,8 +2,20 @@ import json
 import ecdsa
 import datetime
 import traceback
-from keylib import ECPrivateKey, ECPublicKey, public_key_to_address
+from keylib import (
+    ECPrivateKey, ECPublicKey,
+    public_key_to_address
+)
+from keylib.hashing import bin_hash160
+from keylib.address_formatting import bin_hash160_to_address
+from keylib.key_formatting import compress, decompress
 from jsontokens import TokenSigner, TokenVerifier, decode_token
+
+
+class PubkeyType():
+    ecdsa = 1
+    uncompressed = 2
+    compressed = 3
 
 
 def verify_token(token, public_key_or_address, signing_algorithm="ES256K"):
@@ -24,15 +36,33 @@ def verify_token(token, public_key_or_address, signing_algorithm="ES256K"):
         raise ValueError("Token doesn't have a claim")
 
     issuer_public_key = str(decoded_token_payload["issuer"]["publicKey"])
+    public_key_object = ECPublicKey(issuer_public_key)
 
+    if public_key_object._type == PubkeyType.compressed:
+        compressed_address = public_key_object.address()
+        uncompressed_address = bin_hash160_to_address(
+            bin_hash160(
+                decompress(public_key_object.to_bin())
+            )
+        )
+    elif public_key_object._type == PubkeyType.uncompressed:
+        compressed_address = bin_hash160_to_address(
+            bin_hash160(
+                compress(public_key_object.to_bin())
+            )
+        )
+        uncompressed_address = public_key_object.address()
+    else:
+        raise ValueError("Invalid issuer public key format")
+    
     if public_key_or_address == issuer_public_key:
         pass
-    elif public_key_or_address == public_key_to_address(issuer_public_key):
+    elif public_key_or_address == compressed_address:
+        pass
+    elif public_key_or_address == uncompressed_address:
         pass
     else:
         raise ValueError("Token public key doesn't match the verifying value")
-
-    public_key_object = ECPublicKey(issuer_public_key)
 
     token_verifier = TokenVerifier()
 
