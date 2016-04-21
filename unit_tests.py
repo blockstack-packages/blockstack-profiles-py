@@ -27,9 +27,9 @@ class VerificationTests(unittest.TestCase):
         owner_address = "1BTku19roxQs2d54kbYKVTv21oBCuHEApF"
         compressed_address = "12wes6TQpDF2j8zqvAbXV9KNCGQVF2y7G5"
         profile = get_profile_from_tokens(token_records, owner_address)
-        print profile
+        self.assertEqual(profile["name"], "Ryan Shea")
         profile = get_profile_from_tokens(token_records, compressed_address)
-        print profile
+        self.assertEqual(profile["name"], "Ryan Shea")
 
 
 class TokeningTests(unittest.TestCase):
@@ -130,9 +130,9 @@ class LegacyFormatTests(unittest.TestCase):
 def test_main():
     test_support.run_unittest(
         VerificationTests,
-        #TokeningTests,
-        #ZonefileTests,
-        #LegacyFormatTests
+        TokeningTests,
+        ZonefileTests,
+        LegacyFormatTests
     )
 
 
