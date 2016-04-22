@@ -9,10 +9,15 @@ c/_cffi_backend.c:15:10: fatal error: 'ffi.h' file not found
     #include <ffi.h>
 ```
 
-To fix this, try installing *libffi* via brew:
+To fix this on OS X, try installing *libffi* via brew:
 
 ```bash
 $ brew install libffi
+```
+
+On Debian, you can install libffi by:
+```bash
+$ sudo apt-get install libffi-dev
 ```
 
 #### Errors Installing the "cryptography" Package
