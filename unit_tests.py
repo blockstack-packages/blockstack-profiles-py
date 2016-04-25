@@ -8,6 +8,7 @@ from blockstack_profiles import (
     verify_token, verify_token_record, get_profile_from_tokens,
     make_zone_file_for_hosted_data,
     get_person_from_legacy_format,
+    convert_profile_to_legacy_format,
     get_token_file_url_from_zone_file,
     zone_file_has_a_valid_uri_record,
     resolve_zone_file_to_profile
@@ -125,6 +126,11 @@ class LegacyFormatTests(unittest.TestCase):
         zone_file = get_person_from_legacy_format(reference_profiles["jude"])
         # print json.dumps(zone_file, indent=2, sort_keys=True)
         self.assertTrue(isinstance(zone_file, dict))
+
+    def test_format_conversion_to_legacy(self):
+        legacy_format = convert_profile_to_legacy_format(reference_profiles["ryan_new"])
+        #print json.dumps(legacy_format, indent=2, sort_keys=True)
+        self.assertTrue(isinstance(legacy_format, dict))
 
 
 def test_main():

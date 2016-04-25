@@ -83,8 +83,10 @@ def format_account(service_name, data):
         "proofType": "http"
     }
 
-    if data.has_key(service_name) and data[service_name].has_key("proof"):
-        account["proofUrl"] = data[service_name]["proof"]
+    if (data.has_key(service_name)
+        and data[service_name].has_key("proof")
+        and data[service_name]["proof"].has_key("url")):
+        account["proofUrl"] = data[service_name]["proof"]["url"]
 
     return account
 
@@ -191,7 +193,7 @@ def get_person_from_legacy_format(profile_record):
             "contentUrl": profile["pgp"]["url"]
         })
 
-    profile_data["accounts"] = accounts 
+    profile_data["account"] = accounts 
 
     return profile_data
 

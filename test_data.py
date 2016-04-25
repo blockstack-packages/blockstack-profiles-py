@@ -233,5 +233,68 @@ reference_profiles = {
         "publicKey": "02413d7c51118104cfe1b41e540b6c2acaaf91f1e2e22316df7448fb6070d582ec", 
         "encrypted": False
       }
-    ]
+    ],
+    "ryan_new": {
+        "account": [
+          {
+            "service": "twitter", 
+            "@type": "Account", 
+            "proofType": "http", 
+            "identifier": "ryaneshea",
+            "proofUrl": "https://twitter.com/ryaneshea/status/597815798850269184"
+          }, 
+          {
+            "service": "facebook", 
+            "@type": "Account", 
+            "proofType": "http", 
+            "identifier": "ryaneshea",
+            "proofUrl": "https://facebook.com/ryaneshea/posts/10153086767027713"
+          }, 
+          {
+            "service": "github", 
+            "@type": "Account", 
+            "proofType": "http", 
+            "identifier": "shea256",
+            "proofUrl": "https://gist.github.com/shea256/8920fd8c54674ef9d9af"
+          }, 
+          {
+            "service": "bitcoin", 
+            "@type": "Account", 
+            "role": "payment", 
+            "identifier": "1LFS37yRSibwbf8CnXeCn5t1GKeTEZMmu9"
+          }, 
+          {
+            "service": "pgp", 
+            "contentUrl": "https://s3.amazonaws.com/pk9/ryan", 
+            "@type": "Account", 
+            "role": "key", 
+            "identifier": "1E4329E6634C75730D4D88C0638F2769D55B9837"
+          }
+        ], 
+        "address": {
+          "addressLocality": "New York, NY", 
+          "@type": "PostalAddress"
+        }, 
+        "name": "Ryan Shea", 
+        "website": [
+          {
+            "url": "http://shea.io", 
+            "@type": "WebSite"
+          }
+        ], 
+        "image": [
+          {
+            "contentUrl": "https://s3.amazonaws.com/kd4/ryan", 
+            "name": "avatar", 
+            "@type": "ImageObject"
+          }, 
+          {
+            "contentUrl": "https://s3.amazonaws.com/dx3/ryan", 
+            "name": "cover", 
+            "@type": "ImageObject"
+          }
+        ], 
+        "@type": "Person", 
+        "description": "Co-founder of Onename (YC S14, USV). Working on decentralized identity."
+    }
 }
