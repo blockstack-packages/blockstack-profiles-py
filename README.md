@@ -19,9 +19,7 @@ If you have any trouble with the installation, see [the troubleshooting guide](/
 ```python
 from blockstack_profiles import (
   sign_token, wrap_token, sign_token_records,
-  validate_token_record, get_profile_from_tokens,
-  make_zone_file_for_hosted_data,
-  resolve_zone_file_to_profile
+  validate_token_record, get_profile_from_tokens
 )
 ```
 
@@ -69,22 +67,4 @@ profile = get_profile_from_tokens(profile_tokens, "02f1fd79dcd51bd017f71546ddc0f
   "name": "Naval Ravikant", 
   "birthDate": "1980-01-01"
 }
-```
-
-### Creating Zone Files
-
-```python
-zone_file = make_zone_file_for_hosted_data("naval.id", "https://mq9.s3.amazonaws.com/naval.id/profile.json")
-```
-
-```
-$ORIGIN naval.id
-$TTL 3600
-@ IN URI "https://mq9.s3.amazonaws.com/naval.id/profile.json"
-```
-
-### Resolving Zone Files to Profiles
-
-```python
-profile = resolve_zone_file_to_profile(zone_file)
 ```
