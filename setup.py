@@ -22,7 +22,7 @@ setup(
         'cryptography>=1.2.3',
         'jsontokens>=0.0.2',
         'keylib>=0.0.2',
-        'zone-file>=0.1.5'
+        'zone-file>=0.1.6'
     ],
     classifiers=[
         'Intended Audience :: Developers',
