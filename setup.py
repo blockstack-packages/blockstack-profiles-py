@@ -21,8 +21,8 @@ setup(
     install_requires=[
         'cryptography>=1.2.3',
         'jsontokens>=0.0.2',
-        'keylib>=0.0.2',
-        'zone-file>=0.1.6'
+        'keylib>=0.0.5',
+        'blockstack-zones>=0.1.6'
     ],
     classifiers=[
         'Intended Audience :: Developers',
