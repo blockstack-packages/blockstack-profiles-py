@@ -1,6 +1,6 @@
 import json
 import requests
-from zone_file import make_zone_file, parse_zone_file
+from blockstack_zones import make_zone_file, parse_zone_file
 
 from .legacy_format import is_profile_in_legacy_format
 from .token_verifying import get_profile_from_tokens
