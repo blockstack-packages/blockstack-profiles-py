@@ -9,7 +9,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='blockstack-profiles',
-    version='0.4.3',
+    version='0.4.4',
     url='https://github.com/blockstack/blockstack-profiles-py',
     license='MIT',
     author='Blockstack Developers',
