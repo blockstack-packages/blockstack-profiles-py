@@ -2,10 +2,7 @@ import json
 import ecdsa
 import datetime
 import traceback
-from keylib import (
-    ECPrivateKey, ECPublicKey,
-    public_key_to_address
-)
+from keylib import ECPrivateKey, ECPublicKey
 from keylib.hashing import bin_hash160
 from keylib.address_formatting import bin_hash160_to_address
 from keylib.key_formatting import compress, decompress
