@@ -7,10 +7,8 @@ from token_verifying import (
 )
 
 from zone_file_format import (
-    make_zone_file_for_hosted_data,
     get_token_file_url_from_zone_file,
-    zone_file_has_a_valid_uri_record,
-    resolve_zone_file_to_profile
+    zone_file_has_a_valid_uri_record
 )
 
 from legacy_format import (
