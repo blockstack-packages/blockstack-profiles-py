@@ -38,23 +38,23 @@ def is_profile_in_legacy_format(profile):
     else:
         return False
 
-    if profile.has_key("@type"):
+    if "@type" in profile:
         return False
 
-    if profile.has_key("@context"):
+    if "@context" in profile:
         return False
 
     is_in_legacy_format = False
 
-    if profile.has_key("avatar"):
+    if "avatar" in profile:
         is_in_legacy_format = True
-    elif profile.has_key("cover"):
+    elif "cover" in profile:
         is_in_legacy_format = True
-    elif profile.has_key("bio"):
+    elif "bio" in profile:
         is_in_legacy_format = True
-    elif profile.has_key("twitter"):
+    elif "twitter" in profile:
         is_in_legacy_format = True
-    elif profile.has_key("facebook"):
+    elif "facebook" in profile:
         is_in_legacy_format = True
 
     return is_in_legacy_format
