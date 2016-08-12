@@ -49,19 +49,19 @@ def zone_file_has_a_valid_uri_record(data):
 
 
 def resolve_zone_file_to_profile(zone_file, address_or_public_key):
+
     if is_profile_in_legacy_format(zone_file):
         return zone_file
 
-    token_file_url = get_token_file_url_from_zone_file(zone_file)
-
     try:
+        token_file_url = get_token_file_url_from_zone_file(zone_file)
+
         r = requests.get(token_file_url)
-    except:
-        return None
 
-    try:
         profile_token_records = json.loads(r.text)
-    except ValueError:
-        return None
-    
-    return get_profile_from_tokens(profile_token_records, address_or_public_key)
+
+        profile = get_profile_from_tokens(profile_token_records, address_or_public_key)
+    except Exception as e:
+        return None, str(e)
+
+    return profile, None
