@@ -111,7 +111,8 @@ _http._tcp URI 10 1 \"https://blockstack.s3.amazonaws.com/ryan_apr20.id\""""
         self.assertTrue(is_valid)
 
     def test_resolve_zone_file_to_profile(self):
-        profile = resolve_zone_file_to_profile(self.zone_file_2, self.public_key_2)
+        profile, error = resolve_zone_file_to_profile(self.zone_file_2, self.public_key_2)
+
         self.assertTrue("name" in profile)
 
 
