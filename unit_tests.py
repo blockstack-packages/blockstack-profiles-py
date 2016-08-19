@@ -73,6 +73,18 @@ class TokeningTests(unittest.TestCase):
             decoded_token = verify_token_record(token_record, address)
             self.assertTrue(isinstance(decoded_token, dict))
 
+    def test_token_verification_with_public_key(self):
+        public_key = "0273be63a7091923467111e09bbd54492a65b709c7a02416860bd55d7c496bf009"
+        token_records = []
+
+        with open('test_data/sample_token.json', 'r') as f:
+            data = f.read()
+            token_records = json.loads(data)
+
+        for token_record in token_records:
+            token_verified = verify_token_record(token_record, public_key)
+            self.assertTrue(token_verified)
+
     def test_token_file_verification(self):
         token_records = reference_profiles["naval_token_file"]
         public_key = "038354d097be9004f63a6409e2c7a05467b1950120b4c5f840f99832dad743ac1e"

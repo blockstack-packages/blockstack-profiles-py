@@ -1,0 +1,32 @@
+[
+  {
+    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NksifQ.eyJjbGFpbSI6eyJAdHlwZSI6IlBlcnNvbiIsIkBjb250ZXh0IjoiaHR0cDovL3NjaGVtYS5vcmciLCJhZGRyZXNzIjp7IkB0eXBlIjoiUG9zdGFsQWRkcmVzcyJ9LCJnaXZlbk5hbWUiOiJMYXJyeSIsImZhbWlseU5hbWUiOiJTYWxpYnJhIn0sInN1YmplY3QiOnsicHVibGljS2V5IjoiMDI3M2JlNjNhNzA5MTkyMzQ2NzExMWUwOWJiZDU0NDkyYTY1YjcwOWM3YTAyNDE2ODYwYmQ1NWQ3YzQ5NmJmMDA5In0sImlzc3VlciI6eyJwdWJsaWNLZXkiOiIwMjczYmU2M2E3MDkxOTIzNDY3MTExZTA5YmJkNTQ0OTJhNjViNzA5YzdhMDI0MTY4NjBiZDU1ZDdjNDk2YmYwMDkifSwiaXNzdWVkQXQiOiIyMDE2LTA4LTE5VDA2OjA1OjI5LjI4OVoiLCJleHBpcmVzQXQiOiIyMDE3LTA4LTE5VDA2OjA1OjI5LjI4OVoifQ.z98NjI4k0AHv2UM49HAJAyQEFOlWPocb6QpYOl-GmAR69kqhWDWaK5eGAc0zt_jiQ4nL0Ytocfy3u9QyAL8zEA",
+    "decodedToken": {
+      "header": {
+        "typ": "JWT",
+        "alg": "ES256K"
+      },
+      "payload": {
+        "claim": {
+          "@type": "Person",
+          "@context": "http://schema.org",
+          "address": {
+            "@type": "PostalAddress"
+          },
+          "givenName": "Larry",
+          "familyName": "Salibra"
+        },
+        "subject": {
+          "publicKey": "0273be63a7091923467111e09bbd54492a65b709c7a02416860bd55d7c496bf009"
+        },
+        "issuer": {
+          "publicKey": "0273be63a7091923467111e09bbd54492a65b709c7a02416860bd55d7c496bf009"
+        },
+        "issuedAt": "2016-08-19T06:05:29.289Z",
+        "expiresAt": "2017-08-19T06:05:29.289Z"
+      },
+      "signature": "z98NjI4k0AHv2UM49HAJAyQEFOlWPocb6QpYOl-GmAR69kqhWDWaK5eGAc0zt_jiQ4nL0Ytocfy3u9QyAL8zEA"
+    },
+    "encrypted": false
+  }
+]

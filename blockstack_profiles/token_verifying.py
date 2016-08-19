@@ -76,8 +76,6 @@ def verify_token_record(token_record, public_key_or_address,
     """
     if "token" not in token_record:
         raise ValueError("Token record must have a token inside it")
-    if "parentPublicKey" not in token_record:
-        raise ValueError("Token record must have a parent public key inside it")
 
     token = token_record["token"]
 
@@ -86,11 +84,12 @@ def verify_token_record(token_record, public_key_or_address,
     token_payload = decoded_token["payload"]
     issuer_public_key = token_payload["issuer"]["publicKey"]
 
-    if issuer_public_key == token_record["parentPublicKey"]:
-        pass
-    else:
-        raise ValueError(
-            "Verification of tokens signed with keychains is not yet supported")
+    if "parentPublicKey" in token_record:
+        if issuer_public_key == token_record["parentPublicKey"]:
+            pass
+        else:
+            raise ValueError(
+                "Verification of tokens signed with keychains is not yet supported")
 
     return decoded_token
 
