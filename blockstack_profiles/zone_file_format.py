@@ -49,19 +49,32 @@ def zone_file_has_a_valid_uri_record(data):
 
 
 def resolve_zone_file_to_profile(zone_file, address_or_public_key):
-
+    """ Resolves a zone file to a profile and checks to makes sure the tokens
+        are signed with a key that corresponds to the address or public key
+        provided.
+    """
     if is_profile_in_legacy_format(zone_file):
         return zone_file
 
     try:
         token_file_url = get_token_file_url_from_zone_file(zone_file)
-
-        r = requests.get(token_file_url)
-
-        profile_token_records = json.loads(r.text)
-
-        profile = get_profile_from_tokens(profile_token_records, address_or_public_key)
     except Exception as e:
-        return None, str(e)
+        raise Exception("Token file URL could not be extracted from zone file")
 
-    return profile, None
+    try:
+        r = requests.get(token_file_url)
+    except Exception as e:
+        raise Exception("Token could not be acquired from token file URL")
+
+    try:
+        profile_token_records = json.loads(r.text)
+    except ValueError:
+        raise Exception("Token records could not be extracted from token file")
+
+    try:
+        profile = get_profile_from_tokens(profile_token_records,
+                                          address_or_public_key)
+    except Exception as e:
+        raise Exception("Profile could not be extracted from token records")
+
+    return profile

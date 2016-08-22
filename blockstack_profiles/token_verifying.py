@@ -98,18 +98,17 @@ def get_profile_from_tokens(token_records, public_key_or_address,
                             hierarchical_keys=False):
     """ A function for extracting a profile from a list of tokens.
     """
-    
     if hierarchical_keys:
         raise NotImplementedError("Hierarchical key support not implemented")
 
     profile = {}
 
     for token_record in token_records:
-        #print token_record
+        # print token_record
         try:
             decoded_token = verify_token_record(token_record, public_key_or_address)
         except ValueError:
-            traceback.print_exc()
+            # traceback.print_exc()
             continue
         else:
             if "payload" in decoded_token:
