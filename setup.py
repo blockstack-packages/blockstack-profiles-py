@@ -9,7 +9,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='blockstack-profiles',
-    version='0.4.7',
+    version='0.14.0',
     url='https://github.com/blockstack/blockstack-profiles-py',
     license='MIT',
     author='Blockstack Developers',
@@ -22,7 +22,7 @@ setup(
         'cryptography>=1.2.3',
         'jsontokens>=0.0.2',
         'keylib>=0.0.5',
-        'blockstack-zones>=0.1.6'
+        'blockstack-zones>=0.14.0'
     ],
     classifiers=[
         'Intended Audience :: Developers',
