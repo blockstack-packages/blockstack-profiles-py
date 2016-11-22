@@ -112,7 +112,7 @@ _http._tcp URI 10 1 \"https://blockstack.s3.amazonaws.com/ryan_apr20.id\""""
         self.assertTrue(isinstance(zone_file, (unicode, str)))
         self.assertTrue("$ORIGIN" in zone_file)
         self.assertTrue("$TTL" in zone_file)
-        self.assertTrue("_http._tcp URI" in zone_file)
+        self.assertTrue("_http._tcp IN URI" in zone_file)
 
     def test_token_file_url_recovery_from_zone_file(self):
         token_file_url = get_token_file_url_from_zone_file(self.zone_file)
