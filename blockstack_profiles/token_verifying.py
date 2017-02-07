@@ -35,6 +35,9 @@ def verify_token(token, public_key_or_address, signing_algorithm="ES256K"):
     issuer_public_key = str(decoded_token_payload["issuer"]["publicKey"])
     public_key_object = ECPublicKey(issuer_public_key)
 
+    compressed_public_key = compress(issuer_public_key)
+    decompressed_public_key = decompress(issuer_public_key)
+
     if public_key_object._type == PubkeyType.compressed:
         compressed_address = public_key_object.address()
         uncompressed_address = bin_hash160_to_address(
@@ -51,8 +54,10 @@ def verify_token(token, public_key_or_address, signing_algorithm="ES256K"):
         uncompressed_address = public_key_object.address()
     else:
         raise ValueError("Invalid issuer public key format")
-    
-    if public_key_or_address == issuer_public_key:
+   
+    if public_key_or_address == compressed_public_key:
+        pass
+    elif public_key_or_address == decompressed_public_key:
         pass
     elif public_key_or_address == compressed_address:
         pass
