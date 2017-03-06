@@ -18,3 +18,5 @@ from legacy_format import (
     is_profile_in_legacy_format,
     convert_profile_to_legacy_format
 )
+
+from person import Person

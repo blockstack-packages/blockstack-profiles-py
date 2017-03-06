@@ -4,6 +4,9 @@ machine:
 
 dependencies:
   pre:
+    - pip install --upgrade pip
+    - pip install --upgrade six
+    - pip install --upgrade setuptools
     - pip install cryptography
 
 test:
