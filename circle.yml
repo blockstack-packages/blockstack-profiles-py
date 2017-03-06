@@ -5,6 +5,7 @@ machine:
 dependencies:
   pre:
     - pip install six
+    - pip install setuptools
     - pip install cryptography
 
 test:
