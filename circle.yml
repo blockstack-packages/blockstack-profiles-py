@@ -4,6 +4,7 @@ machine:
 
 dependencies:
   pre:
+    - pip install six
     - pip install cryptography
 
 test:
